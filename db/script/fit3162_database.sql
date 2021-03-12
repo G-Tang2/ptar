@@ -25,7 +25,8 @@ CREATE TABLE patient (
 
 CREATE TABLE clinician (
 	clinician_id SERIAL PRIMARY KEY NOT NULL,
-	clinician_name VARCHAR(50)
+	clinician_name VARCHAR(50) NOT NULL,
+	clinician_password VARCHAR(12) NOT NULL
 );
 
 CREATE TABLE test (
@@ -79,7 +80,7 @@ CREATE TABLE abs_test (
 CREATE TABLE abs_ans (
 	abs_ans_id SERIAL NOT NULL,
 	test_id INTEGER NOT NULL,
-	abs_question_no SMALLINT,
+	abs_question_no SMALLINT NOT NULL,
 	abs_option SMALLINT NOT NULL,
 	PRIMARY KEY (abs_ans_id),
 	FOREIGN KEY (test_id) REFERENCES test (test_id)
