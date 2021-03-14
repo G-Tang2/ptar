@@ -45,7 +45,7 @@ CREATE TABLE test (
 		ON DELETE CASCADE,
 	UNIQUE (patient_id, test_date_time),
 	CHECK (test_type IN ('wptas', 'abs')),
-	CHECK (test_score BETWEEN 0 AND 12)
+	CHECK (test_score BETWEEN 0 AND 12 AND test_type = 'wptas' OR test_score BETWEEN 0 AND 56 AND test_type = 'abs')
 );
 
 CREATE TABLE wptas_test (
