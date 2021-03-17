@@ -12,9 +12,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
     title: {
       flexGrow: 1,
     },
@@ -26,7 +23,7 @@ function Header() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{background:"#f5f5f5"}}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             HOSPITAL
