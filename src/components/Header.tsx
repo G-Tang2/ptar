@@ -22,10 +22,11 @@ function Header() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static" style={{background:"#f5f5f5"}}>
+    <div className="header">
+      <AppBar className="app-bar" position="static" style={{background:"#f5f5f5"}}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          {/* <Typography variant="h6" className={classes.title}> */}
+          <Typography variant="h6" className="title">
             HOSPITAL
           </Typography>
           <Avatar>
