@@ -7,7 +7,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 type DotStepperProps = {steps: number, handleNext: () => void, handleBack: () => void, activeStep: number};
 
-function DotsMobileStepper(props:any) {
+function DotsMobileStepper(props:DotStepperProps) {
   const theme = useTheme();
 
   return (

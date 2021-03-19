@@ -27,7 +27,7 @@ function Wptas_question(props:WptasProps) {
             case "radio":
                 return (
                     props.setAnswer(
-                        {answered: props.parentAnswer.answered, mcGiven: props.parentAnswer.mcGiven, score: e.target.value == "0" ? "0" : "1"})
+                        {answered: props.parentAnswer.answered, mcGiven: props.parentAnswer.mcGiven, score: e.target.value === "0" ? "0" : "1"})
                 )
         }        
     }
@@ -46,14 +46,14 @@ function Wptas_question(props:WptasProps) {
             <FormControlLabel
                 className="radio-question"
                 value="0"
-                control={<Radio checked={props.parentAnswer.score == "0"}/>} 
+                control={<Radio checked={props.parentAnswer.score === "0"}/>} 
                 label="0"
                 labelPlacement="bottom"
             />
             <FormControlLabel 
                 className="radio-question"
                 value="1"
-                control={<Radio checked={props.parentAnswer.score == "1"}/>} 
+                control={<Radio checked={props.parentAnswer.score === "1"}/>} 
                 label="1"
                 labelPlacement="bottom"
             />

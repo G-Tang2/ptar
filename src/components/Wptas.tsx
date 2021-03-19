@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import Wptas_question from "./WptasQuestion";
+import WptasQuestion from "./WptasQuestion";
 import DotStepper from "./navComponents/DotStepper";
+import ScoreBar from "./ScoreBar";
 
 // import dummy data
 import Questions from "../dummyData/wptasQuestions";
@@ -64,12 +65,14 @@ function Wptas() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
+    const calcScore:() => number = () => answerArr.map(ans => parseInt(ans.score)).reduce((acc, cur) => cur === 1 ? acc + 1: acc, 0)
+
     const renderPage = () => {
         switch (activeStep) {
             case 0:
                 return (
                     firstPageQuestions.map((question:string, index:number) => (
-                        <Wptas_question 
+                        <WptasQuestion 
                             number={index+1} 
                             question={question} 
                             parentAnswer={answerArr[index]}
@@ -82,13 +85,16 @@ function Wptas() {
                 )
             case 2:
                 return (
-                    thirdPageQuestions.map((question:string, index:number) => (
-                        <Wptas_question 
-                            number={firstPageQuestionAmount+index+1} 
-                            question={question} 
-                            parentAnswer={answerArr[firstPageQuestionAmount+index]}
-                            setAnswer={setAnswerArr[firstPageQuestionAmount+index]}/>
-                    ))
+                    <React.Fragment>
+                        {thirdPageQuestions.map((question:string, index:number) => (
+                            <WptasQuestion 
+                                number={firstPageQuestionAmount+index+1} 
+                                question={question} 
+                                parentAnswer={answerArr[firstPageQuestionAmount+index]}
+                                setAnswer={setAnswerArr[firstPageQuestionAmount+index]}/>
+                        ))}
+                        <ScoreBar score={calcScore}/>
+                    </React.Fragment>
                 )
         }
     }
