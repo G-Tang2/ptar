@@ -5,6 +5,7 @@ import "survey-react/survey.css";
 
 function FormComponent() {
     const [isCompleted, setIsCompleted] = useState(false);
+    const [score, setScore] = useState(0);
 
     const questionJson = {
         questions: [
@@ -122,17 +123,24 @@ function FormComponent() {
             }
         ]
     };
+
+    const model = new Survey.Model(questionJson);
+
     const surveyRender = !isCompleted ? (
         <Survey.Survey
-        json={questionJson}
+        model={model}
         showCompletedPage={false}
-        onComplete={() => setIsCompleted(true)}
+        onComplete={() => {
+            setScore(calcScore())
+            setIsCompleted(true)}}
         />
     ) : null;
-    const onCompleteComponent = isCompleted ? (
-        <div>You have successfully complete the ABS form!</div>
-    ) : null;
 
+    const calcScore = () => questionJson.questions.map(question => parseInt(model.getValue(question.name))).reduce((acc, cur) => cur + acc);
+
+    const onCompleteComponent = isCompleted ? 
+        <div>Score: {score}</div> : null
+    
     return (
         <div>
             {surveyRender}
