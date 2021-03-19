@@ -15,7 +15,12 @@ function FormComponent() {
                 title: "Short attention span, easy distractibility, inability to concentreate.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -23,7 +28,12 @@ function FormComponent() {
                 title: "Impulsive, impatient, low tolerance for pain or frustration.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -31,7 +41,12 @@ function FormComponent() {
                 title: "Uncooperative, resistant to care, demanding.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -39,7 +54,12 @@ function FormComponent() {
                 title: "Violent and/or threatening violence toward people or property.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -47,7 +67,12 @@ function FormComponent() {
                 title: "Explosive and/or unpredictable anger.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -55,7 +80,12 @@ function FormComponent() {
                 title: "Rocking, rubbing, moaning, or other self-stimulating behaviours.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -63,7 +93,12 @@ function FormComponent() {
                 title: "Pulling at tubes, restraints etc.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -71,7 +106,12 @@ function FormComponent() {
                 title: "Wandering from treatment areas.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -79,7 +119,12 @@ function FormComponent() {
                 title: "Restlessness, pacing, excessive movement.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -87,7 +132,12 @@ function FormComponent() {
                 title: "Repetitive behaviours, motor and/or verbal.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -95,7 +145,12 @@ function FormComponent() {
                 title: "Rapid, loud or excessive talking.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -103,7 +158,12 @@ function FormComponent() {
                 title: "Sudden changes in mood.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -111,7 +171,12 @@ function FormComponent() {
                 title: "Easily initiated or excessive crying and/or laughter.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             },
             {
                 type: "radiogroup",
@@ -119,7 +184,12 @@ function FormComponent() {
                 title: "Self-abusiveness, physical and/or verbal.",
                 isRequired: true,
                 colCount: 4,
-                choices: ["1", "2", "3", "4"]
+                choices: [
+                    {value: "1", score: 1},
+                    {value: "2", score: 2},
+                    {value: "3", score: 3},
+                    {value: "4", score: 4}
+                ]
             }
         ]
     };
