@@ -215,8 +215,17 @@ function FormComponent() {
         <div>
             {surveyRender}
             {onCompleteComponent}
+            <ScoreBar score={calcScore}/>
         </div>
     );
+}
+
+function ScoreBar(props:any) {
+    return (
+    <div>
+        <h2>Total Score {props.score()}</h2>
+    </div>
+    )
 }
 
 function Abs() {
