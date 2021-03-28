@@ -41,32 +41,32 @@ function Wptas_question(props:WptasProps) {
         label={labelText}
         />
 
-    const radioWithLabel = () =>
+    const radioWithLabel = (disabled: boolean) =>
         <RadioGroup className="question-option" row name="score-radios" onChange={(e) => triggerAnswered(e, "radio")}>
             <FormControlLabel
                 className="radio-question"
                 value="0"
-                control={<Radio checked={props.parentAnswer.score === "0"}/>} 
+                control={<Radio disabled={disabled} checked={props.parentAnswer.score === "0"}/>} 
                 label="0"
                 labelPlacement="bottom"
             />
             <FormControlLabel 
                 className="radio-question"
                 value="1"
-                control={<Radio checked={props.parentAnswer.score === "1"}/>} 
+                control={<Radio disabled={disabled} checked={props.parentAnswer.score === "1"}/>} 
                 label="1"
                 labelPlacement="bottom"
             />
         </RadioGroup>
 
-    const disabledMC = () => props.parentAnswer.answered ? false : true;
+    const isAnswered = () => props.parentAnswer.answered ? false : true;
 
     return (<div className="question-container">
         <h2>{props.number}. {props.question}</h2>
         <div className="option-container">
             {checkboxWithLabel("checkedAns", "Answered", props.parentAnswer.answered, false)}
-            {checkboxWithLabel("checkedMC", "Multiple choice given", props.parentAnswer.mcGiven, disabledMC())}
-            {radioWithLabel()}
+            {checkboxWithLabel("checkedMC", "Multiple choice given", props.parentAnswer.mcGiven, isAnswered())}
+            {radioWithLabel(isAnswered())}
         </div>
     </div>)
 }
