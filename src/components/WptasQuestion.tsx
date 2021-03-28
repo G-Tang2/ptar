@@ -14,6 +14,7 @@ type WptasProps = {
 function Wptas_question(props:WptasProps) {
     const triggerAnswered = (e: React.ChangeEvent<HTMLInputElement>, option: string) => {
         switch (option) {
+            // Change a button's (checkbox or radio) state when it is clicked.
             case "checkedAns":
                 return (
                     props.setAnswer(
