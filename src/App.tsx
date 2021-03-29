@@ -5,13 +5,12 @@ import MainPage from "./components/MainPage";
 import Qr from "./components/Qr";
 import WptasPicture from "./components/WptasPicture";
 import './stylesheets/main.scss';
-
+import pic1 from './components/assets/bird1.jpg';
 function App() {
   return (
     <div className="App">
       <Header />
-      <Qr />
-      {/* <WptasPicture /> */}
+      <WptasPicture />
     </div>
   );
 }
