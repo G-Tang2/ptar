@@ -29,7 +29,7 @@ function WptasPicture() {
         <div className = "WptasPicture">
             <h1>WESTMEAD P.T.A SCALE - PICTURES</h1>
             <p>Which pictures were shown yesterday?</p>
-            <PicCarousel />
+            {PicCarousel()}
         </div>
     );
 }
