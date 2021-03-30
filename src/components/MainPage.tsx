@@ -1,8 +1,10 @@
 import React from "react";
+import UpcomingTest from './UpcomingTest';
 
 function MainPage() {
+
     return (<div>
-        <h1>MAIN PAGE</h1>
+        <UpcomingTest />
     </div>)
 }
 

@@ -1,0 +1,19 @@
+.upcoming-test-container {
+    margin: 0px 40px;
+    .upcoming-test {
+        display: flex;
+        padding: 5px 0px;
+        .upcoming-test-date {
+            flex-grow: 0;
+            margin: auto 15px;
+        }
+        .upcoming-test-name {
+            flex-grow: 1;
+            margin: auto 5px;
+        }
+        .upcoming-test-button {
+            flex-grow: 0;
+            margin: auto 7px;
+        }
+    }
+}
