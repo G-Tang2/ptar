@@ -15,7 +15,7 @@ function UpcomingTest() {
         </Grid>
     )
 
-    return (<div className='upcoming-test-container'>
+    return (<div>
         <h1>Upcoming Tests</h1>
         <Grid container spacing={1}>
             {tests.map(test => testComponent('Date', test))}
