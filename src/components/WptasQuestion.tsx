@@ -37,7 +37,7 @@ function Wptas_question(props:WptasProps) {
         <FormControlLabel 
         className="question-option"
         control={
-            <Checkbox name={checkboxName} checked={checked} disabled={disabled} onChange={(e) => triggerAnswered(e, checkboxName)}/>
+            <Checkbox name={checkboxName} checked={checked} disabled={disabled} onChange={(e) => triggerAnswered(e, checkboxName)} color="primary"/>
         }
         label={labelText}
         />
@@ -47,14 +47,14 @@ function Wptas_question(props:WptasProps) {
             <FormControlLabel
                 className="radio-question"
                 value="0"
-                control={<Radio disabled={disabled} checked={props.parentAnswer.score === "0"}/>} 
+                control={<Radio disabled={disabled} checked={props.parentAnswer.score === "0"} color="primary"/>} 
                 label="0"
                 labelPlacement="bottom"
             />
             <FormControlLabel 
                 className="radio-question"
                 value="1"
-                control={<Radio disabled={disabled} checked={props.parentAnswer.score === "1"}/>} 
+                control={<Radio disabled={disabled} checked={props.parentAnswer.score === "1"} color="primary"/>} 
                 label="1"
                 labelPlacement="bottom"
             />
@@ -63,7 +63,7 @@ function Wptas_question(props:WptasProps) {
     const isAnswered = () => props.parentAnswer.answered ? false : true;
 
     return (<div className="question-container">
-        <h2>{props.number}. {props.question}</h2>
+        <h2 className="question">{props.number}. {props.question}</h2>
         <div className="option-container">
             {checkboxWithLabel("checkedAns", "Answered", props.parentAnswer.answered, false)}
             {checkboxWithLabel("checkedMC", "Multiple choice given", props.parentAnswer.mcGiven, isAnswered())}

@@ -1,5 +1,14 @@
 .question-container {
-    border-style: solid;
+    border: 1px solid;
+    .question {
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 32px;
+        padding-left: 3%;
+        color: #52575C;
+    }
     .option-container {
         display: flex;
         .question-option {
