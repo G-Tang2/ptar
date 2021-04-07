@@ -2,9 +2,9 @@ import React from "react";
 
 function ScoreBar(props:any) {
     return (
-    <div>
+    <div className="total-score-container">
         <span>Total Score </span>
-        <span>{props.score()}</span>
+        <span className="total-score-number">{props.score()}</span>
     </div>
     )
 }
