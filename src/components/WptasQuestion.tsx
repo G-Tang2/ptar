@@ -69,8 +69,14 @@ function Wptas_question(props:WptasProps) {
             {checkboxWithLabel("checkedAns", "Answered", props.parentAnswer.answered, false)}
             {checkboxWithLabel("checkedMC", "Multiple choice given", props.parentAnswer.mcGiven, isAnswered())}
             {radioWithLabel(isAnswered())}
+            <div className="answer-text-field">
+                <TextField 
+                    label="Answer" 
+                    variant="outlined" 
+                    fullWidth 
+                    size="small"/>
+            </div>
         </div>
-        <TextField label="Answer" />
     </div>)
 }
 

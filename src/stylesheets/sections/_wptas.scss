@@ -1,3 +1,5 @@
+// TODO: Change absolute unit to relative
+
 .questions {
     .question-container {
         border-style: solid;
@@ -15,12 +17,19 @@
             margin-bottom: 0;
         }
         .option-container {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            // display: flex;
             .question-option {
                 margin: auto;
             }
             .radio-question {
                 margin: 0px;
+            }
+            /* Answer text field */
+            .answer-text-field {
+                grid-column-start: 1;
+                grid-column-end: 4;
             }
         }
     }
