@@ -103,7 +103,7 @@ function Wptas() {
     <div className="main-container">
         <h1 className="form-title">WESTMEAD P.T.A SCALE</h1>
         <p className="form-description">P.T.A may be deemed to be over on the first of 3 consecutive days of a recall of 12.</p>
-        {renderPage()}
+        <div className="questions">{renderPage()}</div>
         <DotStepper steps={maxSteps} activeStep={activeStep} handleNext={handleNext} handleBack={handleBack}/>
     </div>
     )

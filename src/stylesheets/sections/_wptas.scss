@@ -1,13 +1,18 @@
 .question-container {
-    border: 1px solid;
+    border-style: solid;
+    border-width: 1px 1px 0px 1px;
+    &:last-of-type {
+        border-bottom: 1px solid;
+    }
     .question {
+        color: #52575C;
         font-family: Mulish;
         font-style: normal;
         font-weight: 600;
         font-size: 26px;
         line-height: 32px;
         padding-left: 3%;
-        color: #52575C;
+        margin-bottom: 0;
     }
     .option-container {
         display: flex;
@@ -19,3 +24,4 @@
         }
     }
 }
+

@@ -3,6 +3,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import TextField from "@material-ui/core/TextField";
 
 type WptasProps = {
     number:number, 
@@ -69,6 +70,7 @@ function Wptas_question(props:WptasProps) {
             {checkboxWithLabel("checkedMC", "Multiple choice given", props.parentAnswer.mcGiven, isAnswered())}
             {radioWithLabel(isAnswered())}
         </div>
+        <TextField label="Answer" />
     </div>)
 }
 
