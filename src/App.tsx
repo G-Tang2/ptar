@@ -1,8 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [questions, setQuestions] = useState([]);
+  const getQuestions = () => fetch("/questions/abs").then((res) => res.json()).then((res) => setQuestions(res))
+  
+  useEffect(() => {
+    getQuestions()
+  })
+
+  console.log(questions);
+
   return (
     <div className="App">
       <header className="App-header">
