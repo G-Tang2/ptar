@@ -65,7 +65,7 @@ function Wptas() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const calcScore:() => number = () => answerArr.map(ans => parseInt(ans.score)).reduce((acc, cur) => cur === 1 ? acc + 1: acc, 0)
+    const calcScore:() => number = () => answerArr.filter(question => question.answered).map(ans => parseInt(ans.score)).reduce((acc, cur) => cur === 1 ? acc + 1: acc, 0)
 
     const renderPage = () => {
         switch (activeStep) {
