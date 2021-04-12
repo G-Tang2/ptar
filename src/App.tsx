@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import Header from "./components/Header";
+import Wptas from "./components/Wptas";
 import Abs from "./components/Abs";
 import MainPage from "./components/MainPage";
 import Qr from "./components/Qr";

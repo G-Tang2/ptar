@@ -1,0 +1,49 @@
+// TODO: Change absolute unit to relative
+
+.questions {
+    .question-container {
+        border-style: solid;
+        border-width: 1px 1px 0px 1px;
+        &:last-of-type {
+            border-bottom: 1px solid;
+        }
+        .question {
+            font-family: Mulish;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 26px;
+            line-height: 32px;
+            padding-left: 3%;
+            margin-bottom: 0;
+        }
+        .option-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            // display: flex;
+            .question-option {
+                margin: auto;
+            }
+            .radio-question {
+                margin: 0px;
+            }
+            /* Answer text field */
+            .answer-text-field {
+                grid-column-start: 1;
+                grid-column-end: 4;
+            }
+        }
+    }
+    .total-score-container {
+        border: 2px solid;
+        text-align: right;
+        padding-right: 3%;
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 26px;
+        line-height: 32px;
+        .total-score-number {
+            border: 1px solid;
+        }
+    }    
+}
