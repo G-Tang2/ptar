@@ -2,7 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import Header from "./components/Header";
 import Abs from "./components/Abs";
-import './App.css';
+import MainPage from "./components/MainPage";
+import './stylesheets/main.scss';
 
 function App() {
   return (
