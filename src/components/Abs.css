@@ -1,0 +1,36 @@
+.Abs {
+    font-family: sans-serif;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.Abs h1 {
+    text-align: left;
+}
+
+.Abs h2 {
+    text-align: left;
+}
+
+.Abs p{
+    text-align: left;
+    margin-left: 30px;
+}
+
+.question-header {
+    text-align: left;
+}
+
+.sv_qstn {
+    background-color: white;
+    border: 1px solid gray;
+    padding: 20px;
+    text-align: left;
+    margin-bottom: -1px;
+}
+
+.sv_qcbc {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+}
