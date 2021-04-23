@@ -25,22 +25,22 @@ function ImageSelector() {
     };
 
     const highlightImage = (e: String) => {
-        var allimgs = document.getElementsByTagName('img');
-        var nrallimgs = allimgs.length;
+        var images = document.getElementsByTagName('img');
+        var imgCount = images.length;
         
-        for (let i = 0; i < nrallimgs; i++) {
-            allimgs[i].onclick = function() {
-                if (this.style.borderStyle == highlightEffect.borderStyle) {
-                    this.style.padding = 'auto';
-                    this.style.background = 'none';
-                    this.style.border = 'none';
+        for (let i = 0; i < imgCount; i++) {
+            images[i].onclick = function() {
+                if (images[i].style.borderStyle == highlightEffect.borderStyle) {
+                    images[i].style.padding = 'auto';
+                    images[i].style.background = 'none';
+                    images[i].style.border = 'none';
                 }
                 else {
-                    this.style.padding = highlightEffect.padding;
-                    this.style.backgroundColor = highlightEffect.backgroundColor;
-                    this.style.borderSize = highlightEffect.borderSize;
-                    this.style.borderStyle = highlightEffect.borderStyle;
-                    this.style.borderColor = highlightEffect.borderColor;
+                    images[i].style.padding = highlightEffect.padding;
+                    images[i].style.backgroundColor = highlightEffect.backgroundColor;
+                    images[i].style.borderSize = highlightEffect.borderSize;
+                    images[i].style.borderStyle = highlightEffect.borderStyle;
+                    images[i].style.borderColor = highlightEffect.borderColor;
                 }
             }
         }
@@ -55,7 +55,7 @@ function ImageSelector() {
     return (
         <div className = "picsRow1">
             <div className = "pic1">
-                <img  src={pic1} alt = "bird1" height = {200} width = {200} onClick={() => highlightImage}/>
+                <img src={pic1} alt = "bird1" height = {200} width = {200} onClick={() => highlightImage}/>
                 <img src={pic2} alt = "bird2" height = {200} width = {200}/>
                 <img src={pic3} alt = "bird3" height = {200} width = {200}/>
             </div>
