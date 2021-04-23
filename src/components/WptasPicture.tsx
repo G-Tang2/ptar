@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 import pic1 from './assets/bird1.jpg';
@@ -11,26 +10,25 @@ import pic6 from './assets/bird6.png';
 import pic7 from './assets/bird7.jpg';
 import pic8 from './assets/bird8.jpg';
 import pic9 from './assets/bird9.jpg';
-import { TransferWithinAStationSharp } from "@material-ui/icons";
 
 function ImageSelector() {
     const [isSelected, SetIsSelected] = useState(false);
 
     const highlightEffect = {
         'padding': '3px',
-        'backgroundColor': '#eded01',
-        'borderSize': '1ps',
+        'backgroundColor': '#808080',
+        'borderWidth': 'medium',
         'borderStyle': 'dashed',
-        'borderColor': '#0001fe'
+        'borderColor': '#0000ff'
     };
 
-    const highlightImage = (e: String) => {
+    const highlightImage = () => {
         var images = document.getElementsByTagName('img');
         var imgCount = images.length;
         
         for (let i = 0; i < imgCount; i++) {
             images[i].onclick = function() {
-                if (images[i].style.borderStyle == highlightEffect.borderStyle) {
+                if (images[i].style.borderStyle === highlightEffect.borderStyle) {
                     images[i].style.padding = 'auto';
                     images[i].style.background = 'none';
                     images[i].style.border = 'none';
@@ -38,7 +36,7 @@ function ImageSelector() {
                 else {
                     images[i].style.padding = highlightEffect.padding;
                     images[i].style.backgroundColor = highlightEffect.backgroundColor;
-                    images[i].style.borderSize = highlightEffect.borderSize;
+                    images[i].style.borderWidth = highlightEffect.borderWidth;
                     images[i].style.borderStyle = highlightEffect.borderStyle;
                     images[i].style.borderColor = highlightEffect.borderColor;
                 }
@@ -46,16 +44,10 @@ function ImageSelector() {
         }
     }
 
-    // const myFunction = (e) => {
-    //     // get the element taht you want -> e.getElement
-    //     // check if it's highlighted or not
-    //     // change the class name to be opposite
-    // }
-
     return (
         <div className = "picsRow1">
             <div className = "pic1">
-                <img src={pic1} alt = "bird1" height = {200} width = {200} onClick={() => highlightImage}/>
+                <img src={pic1} alt = "bird1" height = {200} width = {200} onClick={highlightImage}/>
                 <img src={pic2} alt = "bird2" height = {200} width = {200}/>
                 <img src={pic3} alt = "bird3" height = {200} width = {200}/>
             </div>
