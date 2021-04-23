@@ -14,41 +14,22 @@ import pic9 from './assets/bird9.jpg';
 function ImageSelector() {
     const [count, setCount] = useState(0);
 
-    const highlightEffect = {
-        'padding': '5px',
-        'backgroundColor': '#00BFFF',
-        'borderWidth': 'medium',
-        'borderStyle': 'solid',
-        'borderColor': '#00BFFF'
-    };
-
-    const highlightImage = () => {
-        if (count >= 3) {
-            console.log('Cannot select more than 3 images.')
-            return;
-        }
-
-        var images = document.getElementsByTagName('img');
-        var imgCount = images.length;
+    const highlightImage = (e: any) => {
+        console.log(e);
+        var images = document.getElementById(e.target.id);
         
-        for (let i = 0; i < imgCount; i++) {
-            images[i].onclick = function() {
-                if (images[i].style.borderStyle === highlightEffect.borderStyle) {
-                    setCount(count - 1);
-                    console.log(count);
-                    images[i].style.padding = 'auto';
-                    images[i].style.background = 'none';
-                    images[i].style.border = 'none';
+        if (images != null) {
+            if (images.className==="highlight") {
+                images.className = "no-highlight"
+                setCount(count - 1);
+            }
+            else {
+                if (count >= 3) {
+                    console.log('Cannot select more than 3 images.')
+                    return;
                 }
-                else {
-                    setCount(count + 1);
-                    console.log(count);
-                    images[i].style.padding = highlightEffect.padding;
-                    images[i].style.backgroundColor = highlightEffect.backgroundColor;
-                    images[i].style.borderWidth = highlightEffect.borderWidth;
-                    images[i].style.borderStyle = highlightEffect.borderStyle;
-                    images[i].style.borderColor = highlightEffect.borderColor;
-                }
+                setCount(count + 1);
+                images.className = "highlight";
             }
         }
     }
@@ -56,19 +37,19 @@ function ImageSelector() {
     return (
         <div className = "pics">
             <div className = "picRow1">
-                <img src={pic1} alt = "bird1" height = {200} width = {200} onClick={highlightImage}/>
-                <img src={pic2} alt = "bird2" height = {200} width = {200} onClick={highlightImage}/>
-                <img src={pic3} alt = "bird3" height = {200} width = {200} onClick={highlightImage}/>
+                <img className = 'no-highlight' id = 'pic1' src={pic1} alt = "bird1" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
+                <img className = 'no-highlight' id = 'pic2' src={pic2} alt = "bird2" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
+                <img className = 'no-highlight' id = 'pic3' src={pic3} alt = "bird3" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
             </div>
-            <div className = "picsRow2">
-                <img src={pic4} alt = "bird4" height = {200} width = {200} onClick={highlightImage}/>
-                <img src={pic5} alt = "bird5" height = {200} width = {200} onClick={highlightImage}/>
-                <img src={pic6} alt = "bird6" height = {200} width = {200} onClick={highlightImage}/>
+            <div className = "picRow2">
+                <img className = 'no-highlight' id = 'pic4' src={pic4} alt = "bird4" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
+                <img className = 'no-highlight' id = 'pic5' src={pic5} alt = "bird5" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
+                <img className = 'no-highlight' id = 'pic6' src={pic6} alt = "bird6" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
             </div>
             <div className = "picRow3">
-                <img src={pic7} alt = "bird7" height = {200} width = {200} onClick={highlightImage}/>
-                <img src={pic8} alt = "bird8" height = {200} width = {200} onClick={highlightImage}/>
-                <img src={pic9} alt = "bird9" height = {200} width = {200} onClick={highlightImage}/>
+                <img className = 'no-highlight' id = 'pic7' src={pic7} alt = "bird7" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
+                <img className = 'no-highlight' id = 'pic8' src={pic8} alt = "bird8" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
+                <img className = 'no-highlight' id = 'pic9' src={pic9} alt = "bird9" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
             </div>
         </div>
     )
