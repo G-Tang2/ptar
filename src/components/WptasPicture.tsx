@@ -23,7 +23,7 @@ function ImageSelector() {
     };
 
     const highlightImage = () => {
-        if (count === 3) {
+        if (count >= 3) {
             console.log('Cannot select more than 3 images.')
             return;
         }
@@ -54,8 +54,8 @@ function ImageSelector() {
     }
 
     return (
-        <div className = "picsRow1">
-            <div className = "pic1">
+        <div className = "pics">
+            <div className = "picRow1">
                 <img src={pic1} alt = "bird1" height = {200} width = {200} onClick={highlightImage}/>
                 <img src={pic2} alt = "bird2" height = {200} width = {200} onClick={highlightImage}/>
                 <img src={pic3} alt = "bird3" height = {200} width = {200} onClick={highlightImage}/>
