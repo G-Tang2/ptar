@@ -55,7 +55,7 @@ function ImageSelector() {
     return (
         <div className = "picsRow1">
             <div className = "pic1">
-                <img  src={pic1} alt = "bird1" height = {200} width = {200} onClick={() => console.log("hi")}/>
+                <img  src={pic1} alt = "bird1" height = {200} width = {200} onClick={() => highlightImage}/>
                 <img src={pic2} alt = "bird2" height = {200} width = {200}/>
                 <img src={pic3} alt = "bird3" height = {200} width = {200}/>
             </div>
