@@ -1,30 +1,51 @@
 // TODO: Change absolute unit to relative
-
-.main-container {
+li {
     text-align: left;
-    padding: 0px 50px;
-    background-color: #dcdcdc; /*https://www.w3schools.com/colors/color_tryit.asp?color=Gainsboro*/
-    .form-title {
-        font-family: Mulish;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 32px;
-        line-height: 40px;
-        padding-left: 3%;
-        padding-top: 1em;
-    }
-    .form-description {
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 24px;
-        padding-left: 3%;
-        padding-bottom: 0.5em;
-    }
+}
 
-    /* DotStepper */
-    .MuiMobileStepper-root {
-        background-color: #dcdcdc;
+.App {
+    height: 100vh;
+    background-color: white;
+    .main-container {
+        text-align: left;
+        margin: auto;
+        margin-top: 3px;
+        padding: 0px 40px;
+        border-radius: 8px;
+        max-width: 900px;
+        background-color:white;
+        .button-link {
+            text-decoration: none;
+        }
+        .button-wrapper {
+            padding: 20px 0;
+            text-align: center;
+            .submit-button {
+                width: 100px;
+                margin:auto;
+            }
+        }
+        .inner-container {
+            text-align: center;
+        }
+        .form-title {
+            font-family: Mulish;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 32px;
+            line-height: 40px;
+            padding-left: 3%;
+            padding-top: 1em;
+            margin-top: 0;
+        }
+        .form-description {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+            padding-left: 3%;
+            padding-bottom: 0.5em;
+        }
     }
 }

@@ -1,20 +1,5 @@
-.Abs {
-    font-family: sans-serif;
-    margin-left: 60px;
-    margin-right: 60px;
-}
-
-.Abs h1 {
-    text-align: left;
-}
-
-.Abs h2 {
-    text-align: left;
-}
-
-.Abs p{
-    text-align: left;
-    margin-left: 30px;
+.result-container {
+    text-align: center;
 }
 
 .question-header {
@@ -33,4 +18,14 @@
     text-align: center;
     display: flex;
     justify-content: space-evenly;
+}
+.radio-container {
+    text-align:center;
+    .MuiFormControl-root {
+        width:80%;
+        margin: 10px 0px;
+            .radio-btn{
+                flex-grow:1;
+            }
+    }
 }

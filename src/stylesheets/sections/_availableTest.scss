@@ -1,0 +1,16 @@
+.available-test {
+    display: flex;
+    padding: 5px 0px;
+    .available-test-button {
+        flex-grow: 0;
+        margin: auto 7px;
+    }
+    .available-test-name {
+        flex-grow: 1;
+        margin: auto 15px;
+        font-weight: 600;
+    }
+    .available-test-pre-wptas {
+        margin-left:15px;
+    }
+}

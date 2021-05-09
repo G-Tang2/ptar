@@ -4,9 +4,17 @@
     }
     .app-bar {
         position: static;
-    }
-    .title {
-        flex-grow: 1;
-        
+        background: #F0F6FC;
+        .header-bar{
+            width:100%;
+            max-width: 900px;
+            margin:auto;
+            padding: 0 40px;
+            justify-content: space-between;
+            .header-title-link {
+                color:#01579b;
+                text-decoration: none;
+            }
+        }
     }
 }

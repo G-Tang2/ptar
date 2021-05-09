@@ -1,19 +1,25 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { ReactSVG } from 'react-svg';
+import logo from "../img/logo-epworth.svg";
 
 
-function Header() {
+function Header(props) {
   return (
     <div className="header">
-      <AppBar className="app-bar" style={{background:"#f5f5f5"}}>
-        <Toolbar>
-          <Typography variant="h6" className="title" style={{color:"#01579b"}}>
-            HOSPITAL
-          </Typography>
+      <AppBar className="app-bar" elevation={1}>
+        <Toolbar className="header-bar">
+            <Link to={`/home/${props.patientId}`} className="header-title-link">
+              <ReactSVG 
+                beforeInjection={(svg) => {
+                  svg.setAttribute('style', 'height: 70px')
+                }}
+                src={logo}/>
+            </Link>
           <Avatar>
             <AccountCircleIcon />
           </Avatar>

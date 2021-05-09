@@ -3,7 +3,7 @@
 -- DROP DATABASE fit3162;
 
 -- CREATE DATABASE fit3162
---     WITH 
+--     WITH
 --     OWNER = postgres
 --     ENCODING = 'UTF8'
 --     LC_COLLATE = 'English_Australia.1252'
@@ -13,39 +13,30 @@
 
 DROP TABLE IF EXISTS patient CASCADE;
 DROP TABLE IF EXISTS test CASCADE;
-DROP TABLE IF EXISTS clinician CASCADE;
 DROP TABLE IF EXISTS wptas_test CASCADE;
 DROP TABLE IF EXISTS wptas_ans CASCADE;
 DROP TABLE IF EXISTS abs_test CASCADE;
 DROP TABLE IF EXISTS abs_ans CASCADE;
+DROP TABLE IF EXISTS wptas_ref_ans CASCADE;
 
 CREATE TABLE patient (
-	patient_id SERIAL PRIMARY KEY NOT NULL
-);
-
-CREATE TABLE clinician (
-	clinician_id SERIAL PRIMARY KEY NOT NULL,
-	clinician_name VARCHAR(50) NOT NULL,
-	clinician_password VARCHAR(12) NOT NULL
+	patient_id VARCHAR(20) PRIMARY KEY NOT NULL
 );
 
 CREATE TABLE test (
 	test_id SERIAL NOT NULL,
-	patient_id INTEGER NOT NULL,
+	patient_id VARCHAR(20) NOT NULL,
 	test_date_time TIMESTAMP NOT NULL,
-	clinician_id INTEGER NOT NULL,
+	clinician_initials VARCHAR(20) NOT NULL,
 	test_score SMALLINT NOT NULL,
 	test_type VARCHAR(5) NOT NULL,
 	PRIMARY KEY (test_id),
 	FOREIGN KEY (patient_id) REFERENCES patient (patient_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
-	FOREIGN KEY (clinician_id) REFERENCES clinician (clinician_id)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE,
 	UNIQUE (patient_id, test_date_time),
 	CHECK (test_type IN ('wptas', 'abs')),
-	CHECK (test_score BETWEEN 0 AND 12 AND test_type = 'wptas' OR test_score BETWEEN 0 AND 56 AND test_type = 'abs')
+	CHECK ((test_type = 'wptas' AND test_score BETWEEN 0 AND 12) OR (test_type = 'abs' AND test_score BETWEEN 0 AND 56))
 );
 
 CREATE TABLE wptas_test (
@@ -58,9 +49,9 @@ CREATE TABLE wptas_ans (
 	wptas_ans_id SERIAL NOT NULL,
 	test_id INTEGER NOT NULL,
 	wptas_question_no SMALLINT NOT NULL,
-	wptas_option_one BOOLEAN NOT NULL,
-	wptas_option_two BOOLEAN NOT NULL,
-	wptas_option_three BOOLEAN NOT NULL,
+	wptas_mc_given BOOLEAN,
+	wptas_correct BOOLEAN,
+	wptas_ans_note VARCHAR(255),
 	PRIMARY KEY (wptas_ans_id),
 	FOREIGN KEY (test_id) REFERENCES test (test_id)
 		ON UPDATE CASCADE
@@ -71,8 +62,24 @@ CREATE TABLE wptas_ans (
 	UNIQUE (test_id, wptas_question_no)
 );
 
+CREATE TABLE wptas_ref_ans (
+	wptas_ref_ans_id SERIAL NOT NULL,
+	wptas_question_no INTEGER NOT NULL,
+	patient_id VARCHAR(20) NOT NULL,
+	wptas_ref_ans_date TIMESTAMP NOT NULL,
+	wptas_ref_ans_info VARCHAR(255) NOT NULL,
+	PRIMARY KEY (wptas_ref_ans_id),
+	FOREIGN KEY (wptas_question_no) REFERENCES wptas_test (wptas_question_no)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+	FOREIGN KEY (patient_id) REFERENCES patient (patient_id)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+	UNIQUE (wptas_question_no, patient_id, wptas_ref_ans_date)
+);
+
 CREATE TABLE abs_test (
-	abs_question_no SMALLSERIAL NOT NULL,
+	abs_question_no SERIAL NOT NULL,
 	abs_question_desc VARCHAR(255) NOT NULL,
 	PRIMARY KEY (abs_question_no)
 );
@@ -120,3 +127,13 @@ INSERT INTO abs_test VALUES (11, 'Rapid, loud or excessive talking');
 INSERT INTO abs_test VALUES (12, 'Sudden changes in mood.');
 INSERT INTO abs_test VALUES (13, 'Easily initiated or excessive crying and/or laughter.');
 INSERT INTO abs_test VALUES (14, 'Self-abusiveness, physical and/or verbal.');
+
+------------------------------
+-- REMOVE BEFORE DEPLOYMENT --
+------------------------------
+INSERT INTO patient VALUES ('T43ma7847QBaIG9Ufpln');
+INSERT INTO patient VALUES ('nW083joLdz2Wotb7tDkt');
+INSERT INTO patient VALUES ('GmVexuxfbkdBBz823JKe');
+INSERT INTO patient VALUES ('pzw8MrVtVEuvFCcAnFaV');
+INSERT INTO patient VALUES ('jkFMvxypwBOYjsz6LXue');
+COMMIT;
