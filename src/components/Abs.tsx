@@ -27,8 +27,7 @@ function Abs(props) {
         const curScore = calcScore();
         // store test details
         try{
-            {/* {TODO: REMOVE "T.J" BEFORE DEPLOYMENT} */}
-            const body = {patient_id: props.patientId, test_date_time: localDate, clinician_initials:"T.J", test_score: curScore, test_type: "abs"}
+            const body = {patient_id: props.patientId, test_date_time: localDate, clinician_initials:clinicianId, test_score: curScore, test_type: "abs"}
             const response = await fetch(`http://localhost:5000/abs/test/${props.patientId}`,{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
