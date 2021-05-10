@@ -141,7 +141,7 @@ function Wptas(props) {
             )}
         </div>
         <ScoreBar score={calcScore}/>
-        <TextField label="Correct Answer" onChange = {handleChange} variant="outlined" fullWidth size="small" value={clinicianId}/>
+        <TextField label="Examiner initials" onChange = {handleChange} variant="outlined" fullWidth size="small" value={clinicianId}/>
         <div className="button-wrapper" >
                 {isCompleted() ? 
                     <Link to={`/home/${props.patientId}`} className="button-link" onClick={handleSubmit}>

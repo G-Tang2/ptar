@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button} from "@material-ui/core";
+import {Button, TextField} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import AbsQuestion from "./AbsQuestion";
 import moment from "moment";
@@ -8,12 +8,17 @@ function Abs(props) {
     const [results, setResults] = useState(new Array(14).fill(null))
     const [questions, setQuestions] = useState([])
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [clinicianId, setClinicianId] = useState("")
     
     const getQuestions = () => fetch("http://localhost:5000/questions/abs").then(res => res.json()).then(res => setQuestions(res));
 
     useEffect(() => {
         getQuestions()
     }, []);
+
+    const handleChange = (e) => {
+        setClinicianId(e.target.value)
+    }
 
     const handleSubmit = async () => {
         setIsSubmitted(true)
@@ -102,6 +107,9 @@ function Abs(props) {
                 return false;
             }
         }
+        if (clinicianId.length === 0) {
+            return false;
+        }
         return true;
     }
 
@@ -119,6 +127,7 @@ function Abs(props) {
                                                                                                         setResults={setResults}
                                                                                                         /> )}
                     </div>
+                    <TextField label="Examiner initials" onChange = {handleChange} variant="outlined" fullWidth size="small" value={clinicianId}/>
                     <div className="button-wrapper" >
                     {isCompleted() ?
                     <Button variant="contained" color="primary" className="submit-button" onClick={handleSubmit}>Submit</Button>  :
