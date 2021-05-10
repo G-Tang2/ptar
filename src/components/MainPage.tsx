@@ -1,8 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
+import AvailableTest from './AvailableTest';
+import Progress from "./Progress";
+import PastTest from "./PastTest";
 
-function MainPage() {
-    return (<div>
-        <h1>MAIN PAGE</h1>
+function MainPage(props) {
+    return (<div className='main-container'>
+        <AvailableTest patientId={props.patientId}/>
+        <Progress patientId={props.patientId}/>
+        <PastTest patientId={props.patientId}/>
     </div>)
 }
 

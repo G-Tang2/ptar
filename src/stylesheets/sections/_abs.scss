@@ -1,0 +1,31 @@
+.result-container {
+    text-align: center;
+}
+
+.question-header {
+    text-align: left;
+}
+
+.sv_qstn {
+    background-color: white;
+    border: 1px solid gray;
+    padding: 20px;
+    text-align: left;
+    margin-bottom: -1px;
+}
+
+.sv_qcbc {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+.radio-container {
+    text-align:center;
+    .MuiFormControl-root {
+        width:80%;
+        margin: 10px 0px;
+            .radio-btn{
+                flex-grow:1;
+            }
+    }
+}

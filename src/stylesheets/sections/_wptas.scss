@@ -1,0 +1,100 @@
+// TODO: Change absolute unit to relative
+@mixin radio-btn {
+    width:100%;
+    padding-left: 10px;
+    border-radius: 20px;
+}
+
+.questions {
+    background-color: rgb(255, 255, 255);
+    .question-container {
+        border-style: solid;
+        border-width: 1px 1px 0px 1px;
+        &:last-of-type {
+            border-bottom: 1px solid;
+        }
+        .answer-text {
+            margin-top: 10px;
+            margin-left:3%;
+            opacity: 0.7;
+
+        }
+        .question {
+            font-family: Mulish;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 26px;
+            line-height: 32px;
+            padding-left: 3%;
+            margin-bottom: 0;
+            display:inline-block;
+        }
+        .question-top-container {
+            display:flex;
+            .button-wrapper{
+                min-width:fit-content;
+                padding-bottom: 0;
+                padding-right: 20px;
+                .MuiButton-root {
+                    border-radius:20px;
+                }
+            }
+            .question-text-ans-container {
+                flex-grow:1
+            }
+        }
+        .option-container {
+            .radio-selection-container {
+                width: 90%;
+                margin:auto;
+                .form-container {
+                    width:100%;
+                    .form-radio-group {
+                        .correct-wrapper {
+                            @include radio-btn;
+                        }
+                        .correct-wrapper-active {
+                            @include radio-btn;
+                            background-color: greenyellow;
+                        }
+                        .incorrect-wrapper {
+                            @include radio-btn;
+                        }
+                        .incorrect-wrapper-active {
+                            @include radio-btn;
+                            background-color: rgb(255, 136, 136);
+                        }
+                    }
+                }
+                .MuiFormControlLabel-root {
+                }
+            }
+            .question-option {
+                margin: auto;
+            }
+            .radio-question {
+                margin: 0px;
+            }
+            .answer-text-field {
+                padding: 10px;
+            }
+        }
+    }    
+}
+
+.total-score-container {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid;
+    text-align: right;
+    padding: 0.5em 2em 0.5em 0;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 32px;
+    .total-score-number {
+        border: 1px solid;
+        padding: 0.2em;
+        background-color: rgb(243, 236, 230);
+    }
+}

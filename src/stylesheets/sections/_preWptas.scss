@@ -1,0 +1,16 @@
+.form-subtitle {
+    padding-left: 3%;
+}
+.sticky-notification{
+    display:flex;
+    position:sticky;
+    top:0;
+    text-align:center;
+    height: 27px;
+    color:white;
+    background-color: #e81a1a;
+    z-index:2;
+    p {
+        margin:auto;
+    }
+}
