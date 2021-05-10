@@ -1,6 +1,8 @@
-import firebase from "firebase/app"
+import firebase from "firebase/app";
+import 'firebase/storage';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// should put these info in an .env file
 const firebaseConfig = {
     apiKey: "AIzaSyD2MCMh4fFGZYXQMMFswlP-4WH_wMXKnjk",
     authDomain: "ptar-16ca6.firebaseapp.com",

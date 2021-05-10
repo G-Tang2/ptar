@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import firebase from "firebase/app"
-import { storage } from "../firebase";
+import { storage } from "../firebase/index";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { Grid } from "@material-ui/core";
 
-import pic1 from './assets/bird1.jpg';
-import pic2 from './assets/bird2.png';
-import pic3 from './assets/bird3.jpg';
-import pic4 from './assets/bird4.jpg';
-import pic5 from './assets/bird5.jpg';
-import pic6 from './assets/bird6.png';
-import pic7 from './assets/bird7.jpg';
-import pic8 from './assets/bird8.jpg';
-import pic9 from './assets/bird9.jpg';
 
-const ref = firebase.storage().ref();
-
-function ImageSelector() {
+function WptasPicture() {
+    const storageRef = storage.ref();
+    const [files, setFiles] = useState<any[]>([]);
     const [count, setCount] = useState(0);
     var choice: string[] = ['none', 'none', 'none'];
 
-    const getImage = (image: any) => {
-        // ref.child{`${image}.jpg`}.getDownloadURL().then()
-    }
+    useEffect(() => {
+        const fetchImages = async () => {
+    
+        let result = await storageRef.child("images").listAll();
+        let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
+        
+        return Promise.all(urlPromises);
+    
+        }
+        
+        const loadImages = async () => {
+            const urls:any[] = await fetchImages();
+            setFiles(urls);
+        }
+        loadImages();
+        }, []);
 
     const highlightImage = (e: any) => {
         console.log(e);
@@ -56,34 +61,20 @@ function ImageSelector() {
     }
 
     return (
-        <div className = "pics">
-            <div className = "picRow1">
-                <img className = 'no-highlight' id = 'pic1' src={pic1} alt = "bird1" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
-                <img className = 'no-highlight' id = 'pic2' src={pic2} alt = "bird2" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
-                <img className = 'no-highlight' id = 'pic3' src={pic3} alt = "bird3" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
-            </div>
-            <div className = "picRow2">
-                <img className = 'no-highlight' id = 'pic4' src={pic4} alt = "bird4" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
-                <img className = 'no-highlight' id = 'pic5' src={pic5} alt = "bird5" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
-                <img className = 'no-highlight' id = 'pic6' src={pic6} alt = "bird6" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
-            </div>
-            <div className = "picRow3">
-                <img className = 'no-highlight' id = 'pic7' src={pic7} alt = "bird7" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
-                <img className = 'no-highlight' id = 'pic8' src={pic8} alt = "bird8" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
-                <img className = 'no-highlight' id = 'pic9' src={pic9} alt = "bird9" height = {200} width = {200} onClick={(e) => highlightImage(e)}/>
-            </div>
-        </div>
-    )
-}
-
-function WptasPicture() {
-    return (
         <div className = "WptasPicture">
             <h1>WESTMEAD P.T.A SCALE - PICTURES</h1>
             <p>Which pictures were shown yesterday?</p>
-            {ImageSelector()}
+            <Grid container spacing={1} justify="center" className = "pics">
+                {files.map(url => {
+                    return (
+                    <Grid item xs={4}>
+                        <img className='no-highlight' id = {url} src={url} alt = {url} height = {200} width = {200} onClick={highlightImage}/>
+                    </Grid>
+                    )
+                })}
+            </Grid>
         </div>
-    );
+    )
 }
 
 export default WptasPicture;
