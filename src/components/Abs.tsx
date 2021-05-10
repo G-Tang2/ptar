@@ -119,9 +119,11 @@ function Abs(props) {
                                                                                                         setResults={setResults}
                                                                                                         /> )}
                     </div>
+                    <div className="button-wrapper" >
                     {isCompleted() ?
                     <Button variant="contained" color="primary" className="submit-button" onClick={handleSubmit}>Submit</Button>  :
                     <Button variant="contained" color="primary" className="submit-button" disabled>Submit</Button>}
+                    </div>
                 </React.Fragment>
             }
         </div>
