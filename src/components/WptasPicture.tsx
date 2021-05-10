@@ -7,23 +7,20 @@ import { Grid } from "@material-ui/core";
 
 function WptasPicture() {
     const storageRef = storage.ref();
-    const [files, setFiles] = useState<any[]>([]);
+    const [cardUrl, setCardUrl] = useState<string[]>([]);
     const [count, setCount] = useState(0);
     var choice: string[] = ['none', 'none', 'none'];
 
     useEffect(() => {
         const fetchImages = async () => {
-    
-        let result = await storageRef.child("images").listAll();
-        let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
-        
-        return Promise.all(urlPromises);
-    
+            let result = await storageRef.child("images").child("picture-cards").listAll();
+            let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
+            return Promise.all(urlPromises);
         }
         
         const loadImages = async () => {
-            const urls:any[] = await fetchImages();
-            setFiles(urls);
+            const urls:string[] = await fetchImages();
+            setCardUrl(urls);
         }
         loadImages();
         }, []);
@@ -65,7 +62,7 @@ function WptasPicture() {
             <h1>WESTMEAD P.T.A SCALE - PICTURES</h1>
             <p>Which pictures were shown yesterday?</p>
             <Grid container spacing={1} justify="center" className = "pics">
-                {files.map(url => {
+                {cardUrl.map(url => {
                     return (
                     <Grid item xs={4}>
                         <img className='no-highlight' id = {url} src={url} alt = {url} height = {200} width = {200} onClick={highlightImage}/>
