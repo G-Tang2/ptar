@@ -127,7 +127,7 @@ function Abs(props) {
                                                                                                         setResults={setResults}
                                                                                                         /> )}
                     </div>
-                    <TextField label="Examiner initials" onChange = {handleChange} variant="outlined" fullWidth size="small" value={clinicianId}/>
+                    <TextField className="examiner-initials-text-field" label="Examiner initials" onChange = {handleChange} variant="outlined" fullWidth size="small" value={clinicianId}/>
                     <div className="button-wrapper" >
                     {isCompleted() ?
                     <Button variant="contained" color="primary" className="submit-button" onClick={handleSubmit}>Submit</Button>  :
