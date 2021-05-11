@@ -43,8 +43,8 @@ function Wptas_question(props:WptasProps) {
     const [choices, setChoices] = useState<string[]>([])
 
     useEffect(() => {
-        // const choices = MultipleChoice(props.number, props.correctAnswer)
-        const choices = []
+        const choices = MultipleChoice(props.number, props.correctAnswer)
+        // const choices = []
         setChoices(choices)
     },[])
 
@@ -54,13 +54,16 @@ function Wptas_question(props:WptasProps) {
 
     const handleClose = (value: string) => {
         setOpen(false);
+        console.log(value);
         setSelectedValue(value);
-        if (selectedValue === props.correctAnswer) {
-            props.setAnswer(prevState => ({...prevState, answered: true, correct:true}));
-        }
-        else {
-            props.setAnswer(prevState => ({...prevState, answered: true, correct:false}));
-        }
+        props.setAnswer(prevState => ({...prevState, note: value}));
+        // TODO: for late to automatically select correct or incorrect button
+        // if (selectedValue === props.correctAnswer) {
+        //     props.setAnswer(prevState => ({...prevState, answered: true, correct:true}));
+        // }
+        // else {
+        //     props.setAnswer(prevState => ({...prevState, answered: true, correct:false}));
+        // }
     };
 
     const handleAnswerBtnClick = (e) => {
@@ -113,7 +116,7 @@ function Wptas_question(props:WptasProps) {
         <div className="option-container">
             {RadioButton()}
             <div className="answer-text-field">
-                <TextField label="Note" onChange = {handleTextChange} variant="outlined" fullWidth size="small"/>
+                <TextField label="Note" onChange = {handleTextChange} value={props.parentAnswer.note} variant="outlined" fullWidth size="small"/>
             </div>
         </div>
     </div>)
