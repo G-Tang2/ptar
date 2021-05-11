@@ -8,7 +8,7 @@ import moment from "moment";
 
 function Wptas(props) {
     // WPTAS questions that will be loaded from the database
-    const [questions, setQuestions] = useState([])
+    const [questions, setQuestions] = useState<{wptas_question_no:number, wptas_question_desc:string}[]>([])
     const getQuestions = () => fetch("http://localhost:5000/questions/wptas").then(res => res.json()).then(res => setQuestions(res));
     const [correctAnswers, setCorrectAnswers] = useState(new Array(14).fill(""))
     const [clinicianId, setClinicianId] = useState("")

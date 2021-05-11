@@ -10,7 +10,7 @@ import WptasPicture from "./components/WptasPicture";
 import './stylesheets/main.scss';
 import pic1 from './components/assets/bird1.jpg';
 function App() {
-  const [patientId, setPatientId] = useState()
+  const [patientId, setPatientId] = useState("")
   return (
     <div className="App">
       <Router >

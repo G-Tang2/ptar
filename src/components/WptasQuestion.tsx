@@ -43,10 +43,11 @@ function Wptas_question(props:WptasProps) {
     const [choices, setChoices] = useState<string[]>([])
 
     useEffect(() => {
-        const choices = MultipleChoice(props.number, props.correctAnswer)
-        // const choices = []
-        setChoices(choices)
-    },[])
+        if (props.correctAnswer !== "") {
+            const choices = MultipleChoice(props.number, props.correctAnswer)
+            setChoices(choices)
+        }
+    },[props.correctAnswer])
 
     const handleClickOpen = () => {
         setOpen(true);

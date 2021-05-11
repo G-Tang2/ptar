@@ -21,7 +21,7 @@ function PreWptas(props) {
     const [answerSeven, setAnswerSeven] = useState<string>("")
     const [answerEight, setAnswerEight] = useState<string>("")
     const [answerNine, setAnswerNine] = useState<string>("")
-    const [answerPicture, setAnswerPicture] = useState<string[]>([])
+    const [answerPicture, setAnswerPicture] = useState<string[]>([""])
 
     const answerArr = [
         answerOne, 
