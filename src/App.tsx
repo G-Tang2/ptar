@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Router >
-        <Header patientId={patientId}/>
+        <Header patientId={patientId} setPatientId={setPatientId}/>
         <Route exact path="/">
           <Qr patientId={patientId} setPatientId={setPatientId}/>
         </Route>

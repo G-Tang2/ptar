@@ -10,6 +10,9 @@ import { Button } from "@material-ui/core";
 
 
 function Header(props) {
+  const handleClick = () => {
+    props.setPatientId("");
+  }
   return (
     <div className="header">
       <AppBar className="app-bar" elevation={1}>
@@ -21,7 +24,7 @@ function Header(props) {
                 }}
                 src={logo}/>
             </Link>
-          <Link to={"/"} className='button-link'>
+          <Link to={"/"} className='button-link' onClick={handleClick}>
             <Button variant="contained" color="secondary" size="small">LOG OUT</Button>
           </Link>
         </Toolbar>
