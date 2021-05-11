@@ -3,7 +3,10 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
-import { Button, FormControl } from "@material-ui/core";
+import { Button, Dialog, DialogTitle, FormControl, List, ListItem } from "@material-ui/core";
+import MultipleChoice from "./MultipleChoice";
+import { useEffect } from "react";
+import { useState } from "react";
 
 type WptasProps = {
     number:number, 
@@ -13,19 +16,66 @@ type WptasProps = {
     setAnswer: Dispatch<SetStateAction<{ answered: boolean, mcGiven: boolean, correct: boolean, note: string}>>
 };
 
+function SimpleDialog(props) {
+    const handleClick = choice => {
+        if (choice) {
+            props.handleClose(choice)
+        }
+    }
+  
+    return (
+      <Dialog onClose={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open}>
+        <DialogTitle id="simple-dialog-title">Multiple Choice</DialogTitle>
+            <List>
+                {props.choices.map(choice => (
+                    <ListItem button key={choice} onClick={() => handleClick(choice)}>
+                        {choice}
+                    </ListItem>
+                ))}
+            </List>
+      </Dialog>
+    );
+  }
+
 function Wptas_question(props:WptasProps) {
+    const [open, setOpen] = React.useState<boolean>(false);
+    const [selectedValue, setSelectedValue] = React.useState<string>("");
+    const [choices, setChoices] = useState<string[]>([])
+
+    useEffect(() => {
+        // const choices = MultipleChoice(props.number, props.correctAnswer)
+        const choices = []
+        setChoices(choices)
+    },[])
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (value: string) => {
+        setOpen(false);
+        setSelectedValue(value);
+        if (selectedValue === props.correctAnswer) {
+            props.setAnswer(prevState => ({...prevState, answered: true, correct:true}));
+        }
+        else {
+            props.setAnswer(prevState => ({...prevState, answered: true, correct:false}));
+        }
+    };
+
     const handleAnswerBtnClick = (e) => {
         if (e.target.defaultValue === "correct") {
             props.setAnswer(prevState => ({...prevState, answered: true, correct:true}));
         }
         else if (e.target.defaultValue === "incorrect") {
-            props.setAnswer(prevState => ({...prevState, answered: true, correct:false, note: props.parentAnswer.note}));
+            props.setAnswer(prevState => ({...prevState, answered: true, correct:false}));
         }
     }
 
     const handleTextChange = (e) => {
         props.setAnswer(prevState => ({...prevState, note: e.target.value}))
     }
+
 
     const RadioButton = () => {
         return (
@@ -50,9 +100,14 @@ function Wptas_question(props:WptasProps) {
             </div>
             <div className="button-wrapper">
                 {/*TODO: Link multiple choice button to multiple choice pop up and keep track of answers*/}
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={handleClickOpen}>
                     Show Choices
                 </Button>
+                <SimpleDialog 
+                    choices={choices}
+                    open={open} 
+                    handleClose={handleClose} 
+                />
             </div>
         </div>
         <div className="option-container">

@@ -8,9 +8,10 @@ router.get('/pre-wptas/api/:id', (req, res) => {
   const query = `
   SELECT * FROM wptas_ref_ans
   WHERE patient_id=($1) AND wptas_ref_ans_date = (
-    SELECT MAX(wptas_ref_ans_date) 
+    SELECT MAX(wptas_ref_ans_date)
     FROM wptas_ref_ans
-    )`
+    WHERE patient_id=($1)
+    );`
   myPool.query(query, [id], (err, results) => {
     if (err) throw err;
     res.send(results.rows);
