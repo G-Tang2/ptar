@@ -13,12 +13,12 @@ import React from 'react';
 function InputField(props) {
     const storageRef = storage.ref();
     const [url, setUrl] = useState<string[]>([]);
-    const [count, setCount] = useState<number>(props.answer !== ["","",""] ? 3 : 0);
-    const [choice, setChoice] = useState<string[]>(props.answer.length > 0 ? props.answer : ["","",""]);
+    const [count, setCount] = useState<number>(0);
+    const [choice, setChoice] = useState<string[]>(["","",""]);
 
     useEffect(() => {
-        console.log(props)
-        if (props.number === 8 || props.number === 10) {
+        if (props.number === 10) {
+            console.log(props.answer)
                 const subDirectory = props.number === 8 ? "faces" : "picture-cards"
                 const fetchImages = async () => {
                 let result = await storageRef.child("images").child(subDirectory).listAll();
@@ -31,8 +31,19 @@ function InputField(props) {
                 setUrl(urls);
             }
             loadImages()
+
+            setChoice(props.answer)
+
+            let count = 0;
+            for (let i=0; i < props.answer.length;i++) {
+                console.log(props.answer[i])
+                if (props.answer[i] !== ""){
+                    count++;
+                }
+            }
+            setCount(count)
         }
-    }, []);
+    }, [props]);
 
     const handleChange = (e) => {
         props.setAnswer(e.target.value as string)
@@ -137,6 +148,8 @@ function InputField(props) {
 
     const pictureForm = () => {
         const highlightImage = (e: any) => {
+            console.log(count)
+            console.log(choice)
             var images = document.getElementById(e.target.id);
             if (images != null) {
                 if (images.className === "highlight") {

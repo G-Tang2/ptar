@@ -37,8 +37,22 @@ function SimpleDialog(props) {
     );
   }
 
+  function PictureDialog(props) {
+      const handleClick = () => {
+          props.handleClose();
+      }
+    return (
+      <Dialog onClose={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open}>
+        <DialogTitle id="simple-dialog-title">Picture</DialogTitle>
+            <img className='no-highlight' id = {props.answer} src={props.answer} alt = {props.answer} height = {200} width = {200}/>
+            <Button onClick={() => handleClick()}>OK</Button>
+      </Dialog>
+    );
+  }
+
 function Wptas_question(props:WptasProps) {
     const [open, setOpen] = React.useState<boolean>(false);
+    const [openPic, setOpenPic] = React.useState<boolean>(false);
     const [selectedValue, setSelectedValue] = React.useState<string>("");
     const [choices, setChoices] = useState<string[]>([])
 
@@ -53,9 +67,16 @@ function Wptas_question(props:WptasProps) {
         setOpen(true);
     };
 
+    const handleClickOpenPic = () => {
+        setOpenPic(true);
+    };
+
+    const handleClosePic = () => {
+        setOpenPic(false);
+    }
+
     const handleClose = (value: string) => {
         setOpen(false);
-        console.log(value);
         setSelectedValue(value);
         props.setAnswer(prevState => ({...prevState, note: value}));
         // TODO: for late to automatically select correct or incorrect button
@@ -96,11 +117,31 @@ function Wptas_question(props:WptasProps) {
         )
     }
 
+    const answerUI = () => {
+        if (props.number > 9) {
+            return(
+                <React.Fragment>
+                    <Button variant="contained" color="primary" onClick={handleClickOpenPic} style={{opacity:"100%"}}>
+                        Show
+                    </Button>
+                    <PictureDialog 
+                        open={openPic} 
+                        handleClose={handleClosePic} 
+                        answer={props.correctAnswer}
+                    />
+                </React.Fragment>
+            )
+        }
+        else {
+            return props.correctAnswer
+        }
+    }
+
     return (<div className="question-container">
         <div className="question-top-container">
             <div className="question-text-ans-container">
                 <h2 className="question">{props.number}. {props.question}</h2>
-                <p className="answer-text">Answer: {props.correctAnswer}</p>
+                <p className="answer-text">Answer: {answerUI()}</p>
             </div>
             <div className="button-wrapper">
                 {/*TODO: Link multiple choice button to multiple choice pop up and keep track of answers*/}
