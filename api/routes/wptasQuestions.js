@@ -15,8 +15,19 @@ router.get('/questions/wptas', (req, res) => {
 // currently unused
 router.get('/wptas/test/:id', (req, res) => {
   const id = req.params.id
-  const query = `SELECT test_id, TO_CHAR(test_date_time, 'DD/MM/YYYY') AS test_date_time, clinician_initials, test_score FROM test WHERE test_type='wptas' AND patient_id=${id} ORDER BY test_date_time DESC;`
-  myPool.query(query,
+  const query = `SELECT test_id, TO_CHAR(test_date_time, 'DD/MM/YYYY') AS test_date_time, clinician_initials, test_score FROM test WHERE test_type='wptas' AND patient_id=($1) ORDER BY test_date_time DESC;`
+  myPool.query(query, [id],
+    (err, results) => {
+      if (err) throw err;
+    res.send(results.rows);
+  })
+});
+
+// get patient's wptas test scores
+router.get('/wptas/test/score/:id', (req, res) => {
+  const id = req.params.id
+  const query = `SELECT TO_CHAR(test_date_time, 'DD/MM') AS test_date_time, test_score FROM test WHERE test_type='wptas' AND patient_id=($1) ORDER BY test_date_time;`
+  myPool.query(query, [id],
     (err, results) => {
       if (err) throw err;
     res.send(results.rows);

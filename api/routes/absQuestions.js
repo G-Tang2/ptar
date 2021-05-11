@@ -13,6 +13,18 @@ router.get('/questions/abs', (req, res) => {
   })
 });
 
+// get patient's abs test scores
+router.get('/abs/test/score/:id', (req, res) => {
+  const id = req.params.id
+  const query = `SELECT TO_CHAR(test_date_time, 'DD/MM') AS test_date_time, test_score FROM test WHERE test_type='abs' AND patient_id=($1) ORDER BY test_date_time;`
+  myPool.query(query, [id],
+    (err, results) => {
+      if (err) throw err;
+    res.send(results.rows);
+  })
+});
+
+
 // post abs test detail to database
 router.post('/abs/test/:id', (req, res) => {
   // patient_id can also be retrieved from url params
