@@ -104,7 +104,7 @@ function PastTest(props) {
     return (
         <div>
             <h1>Past Tests</h1>
-            <Accordion>
+            <Accordion elevation={3}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
             >
@@ -116,7 +116,7 @@ function PastTest(props) {
                 {testResults("wptas")}
             </AccordionDetails>
             </Accordion>
-            <Accordion>
+            <Accordion elevation={3}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
             >

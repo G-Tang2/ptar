@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import WptasProgressChart from "./ProgressChart"
+import { Paper } from "@material-ui/core";
 import ProgressChart from "./ProgressChart"
 
 
@@ -8,9 +7,9 @@ function Progress(props) {
         <div>
             <h1>Progress</h1>
             <div className="chart-container">
-                <div className="chart-wrapper">
+                <Paper elevation={3}>
                     <ProgressChart patientId={props.patientId}/>
-                </div>
+                </Paper>
             </div>
         </div>
     )

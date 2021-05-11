@@ -2,12 +2,19 @@ import React, {useState} from "react";
 import AvailableTest from './AvailableTest';
 import Progress from "./Progress";
 import PastTest from "./PastTest";
+import { Paper } from "@material-ui/core";
 
 function MainPage(props) {
     return (<div className='main-container'>
-        <AvailableTest patientId={props.patientId}/>
-        <Progress patientId={props.patientId}/>
-        <PastTest patientId={props.patientId}/>
+        <Paper className="main-page-section" variant="outlined">
+            <AvailableTest patientId={props.patientId}/>
+        </Paper>
+        <Paper className="main-page-section" variant="outlined">
+            <Progress patientId={props.patientId}/>
+        </Paper>
+        <Paper className="main-page-section" variant="outlined">
+            <PastTest patientId={props.patientId}/>
+        </Paper>
     </div>)
 }
 
