@@ -26,6 +26,15 @@ function Wptas(props) {
             for (let i = 0; i < res.length; i++) {
                 index = res[i].wptas_question_no - 1
                 val = res[i].wptas_ref_ans_info
+                // date needs to be formatted
+                // date of birth answer
+                if (index === 1) {
+                    val = moment(val).local().format("DD/MM/YYYY")
+                }
+                // current year answer
+                else if (index === 5) {
+                    val = moment(val).local().format("YYYY")
+                }
                 newCorrectAnswers[index] = val === "" ? "No answer set" : val
             }
             setCorrectAnswers(newCorrectAnswers)
