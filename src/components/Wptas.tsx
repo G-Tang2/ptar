@@ -2,16 +2,17 @@ import React, {useEffect, useState} from "react";
 import {Button, TextField} from "@material-ui/core";
 import WptasQuestion from "./WptasQuestion";
 import ScoreBar from "./ScoreBar";
-import {Link} from "react-router-dom";
-import { PinDropSharp, TextFormatRounded } from "@material-ui/icons";
+import {Link, useHistory} from "react-router-dom";
 import moment from "moment";
+
 
 function Wptas(props) {
     // WPTAS questions that will be loaded from the database
     const [questions, setQuestions] = useState<{wptas_question_no:number, wptas_question_desc:string}[]>([])
-    const getQuestions = () => fetch("http://localhost:5000/questions/wptas").then(res => res.json()).then(res => setQuestions(res));
+    const getQuestions = () => fetch("http://localhost:5000/questions/wptas").then(res => res.json()).then(res => setQuestions(res))
     const [correctAnswers, setCorrectAnswers] = useState(new Array(14).fill(""))
     const [clinicianId, setClinicianId] = useState("")
+    const history = useHistory()
 
     // load correct answers to generate MC and to inform user
     const getAnswers = () => {
@@ -88,37 +89,37 @@ function Wptas(props) {
     }
 
     const handleSubmit = async () => {
-    const utcDate = moment().utc().format()
-    const localDate = moment.utc(utcDate).local().format()
-    const curScore = calcScore();
-    // store test details
-    try{
-        const body = {patient_id: props.patientId, test_date_time: localDate, clinician_initials:clinicianId, test_score: curScore, test_type: "wptas"}
-        const response = await fetch(`http://localhost:5000/wptas/test/${props.patientId}`,{
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(body)
-        })
-        // store test answers
-        await response.json().then(data => {
-            for (let i=0; i<answerArr.length; i++) {
-                try{
-                    // data[0].test_id holds the test id due to RETURNING query
-                    const body = {test_id: data[0].test_id, wptas_question_no: i+1, wptas_mc_given: answerArr[i].mcGiven,
-                         wptas_correct: answerArr[i].correct, wptas_ans_note: answerArr[i].note}
-                    const response = fetch(`http://localhost:5000/wptas/test/results/${props.patientId}`,{
-                        method: "POST",
-                        headers: {"Content-Type": "application/json"},
-                        body: JSON.stringify(body)
-                    })
-                } catch (err) {
-                    console.log(err.message)
+        const utcDate = moment().utc().format()
+        const localDate = moment.utc(utcDate).local().format()
+        const curScore = calcScore();
+        // store test details
+        try{
+            const body = {patient_id: props.patientId, test_date_time: localDate, clinician_initials:clinicianId, test_score: curScore, test_type: "wptas"}
+            const response = await fetch(`http://localhost:5000/wptas/test/${props.patientId}`,{
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            })
+            // store test answers
+            await response.json().then(data => {
+                for (let i=0; i<answerArr.length; i++) {
+                    try{
+                        // data[0].test_id holds the test id due to RETURNING query
+                        const body = {test_id: data[0].test_id, wptas_question_no: i+1, wptas_mc_given: answerArr[i].mcGiven,
+                            wptas_correct: answerArr[i].correct, wptas_ans_note: answerArr[i].note}
+                        const response = fetch(`http://localhost:5000/wptas/test/results/${props.patientId}`,{
+                            method: "POST",
+                            headers: {"Content-Type": "application/json"},
+                            body: JSON.stringify(body)
+                        }).then(() => history.push(`/home/${props.patientId}`))
+                    } catch (err) {
+                        console.log(err.message)
+                    }
                 }
             }
-        }
-        )} catch (err) {
-            console.log(err.message)
-        }
+            )} catch (err) {
+                console.log(err.message)
+            }
     }
       
     const calcScore:() => number = () => answerArr.filter(question => question.correct).reduce((acc, cur) => cur ? acc+1: acc, 0)
@@ -144,9 +145,10 @@ function Wptas(props) {
         <TextField className="examiner-initials-text-field" label="Examiner initials" onChange = {handleChange} variant="outlined" fullWidth size="small" value={clinicianId}/>
         <div className="button-wrapper" >
                 {isCompleted() ? 
-                    <Link to={`/home/${props.patientId}`} className="button-link" onClick={handleSubmit}>
-                        <Button variant="contained" color="primary" className="submit-button">Submit</Button> 
-                    </Link> :
+                    // <Link className="button-link" >
+                        <Button variant="contained" color="primary" className="submit-button" onClick={handleSubmit}>Submit</Button> 
+                    // </Link> : 
+                    :
                     <Button variant="contained" color="primary" className="submit-button" disabled>Submit</Button>}
         </div>
     </div>
