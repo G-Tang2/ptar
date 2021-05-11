@@ -1,4 +1,5 @@
 const randomAge = (answer:string) => {
+    console.log(answer)
     const arr:string[] = [];
     const variance = 10
     const min = parseInt(answer) - variance
@@ -7,8 +8,10 @@ const randomAge = (answer:string) => {
     while(arr.length < 2){
         let r = (Math.floor(Math.random() * max) + min).toString();
         if(r !== answer && arr.indexOf(r) === -1) arr.push(r);
+        console.log("hi")
     }
 
+    // insert correct answer
     let randomIndex = Math.floor(Math.random() * 2)
     arr.splice(randomIndex, 0, answer)
     

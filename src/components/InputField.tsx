@@ -1,13 +1,39 @@
 import 'date-fns';
 import TextField from "@material-ui/core/TextField";
-import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Button, FormControl, Grid, InputLabel, MenuItem, Select } from "@material-ui/core";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import moment from "moment";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { storage } from "../firebase/index";
+import React from 'react';
 
 
 function InputField(props) {
+    const storageRef = storage.ref();
+    const [url, setUrl] = useState<string[]>([]);
+    const [count, setCount] = useState<number>(props.answer !== ["","",""] ? 3 : 0);
+    const [choice, setChoice] = useState<string[]>(props.answer.length > 0 ? props.answer : ["","",""]);
+
+    useEffect(() => {
+        console.log(props)
+        if (props.number === 8 || props.number === 10) {
+                const subDirectory = props.number === 8 ? "faces" : "picture-cards"
+                const fetchImages = async () => {
+                let result = await storageRef.child("images").child(subDirectory).listAll();
+                let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
+                return Promise.all(urlPromises);
+            }
+            
+            const loadImages = async () => {
+                const urls:string[] = await fetchImages();
+                setUrl(urls);
+            }
+            loadImages()
+        }
+    }, []);
+
     const handleChange = (e) => {
         props.setAnswer(e.target.value as string)
     }
@@ -109,6 +135,62 @@ function InputField(props) {
         )
     }
 
+    const pictureForm = () => {
+        const highlightImage = (e: any) => {
+            var images = document.getElementById(e.target.id);
+            if (images != null) {
+                if (images.className === "highlight") {
+                    images.className = "no-highlight"
+                    setCount(count - 1);;
+                    for (let i = 0; i < 3; i++) {
+                        if (choice[i] == e.target.id) {
+                            choice[i] = '';
+                            setChoice(choice)
+                            props.setAnswer(choice)
+                            break;
+                        }
+                    }
+                }
+                else {
+                    if (count >= 3) {
+                        console.log('Cannot select more than 3 images.')
+                        return;
+                    }
+                    setCount(count + 1);;
+                    images.className = "highlight";
+                    for (let i = 0; i < 3; i++) {
+                        if (choice[i] === '') {
+                            choice[i] = e.target.id;
+                            setChoice(choice)
+                            props.setAnswer(choice)
+                            break;
+                        }
+                    }
+                }
+            }
+
+        }
+        return (
+            <Accordion>
+                    <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                    >Select three pictures</AccordionSummary>
+                    <AccordionDetails>
+                        <Grid container spacing={1} justify="center" className = "pics">
+                            {url.map(url => (
+                                <Grid item xs={4}>
+                                    <img className={props.answer.includes(url) ? 'highlight' : 'no-highlight'} id = {url} src={url} alt = {url} height = {200} width = {150} onClick={highlightImage}/>
+                                </Grid>
+                                )
+                            )}
+                        </Grid>
+                    </AccordionDetails>
+            </Accordion>
+        )}
+            
+
     const questionInputField = question_no => {
         switch (question_no) {
             case (1):
@@ -123,6 +205,8 @@ function InputField(props) {
                 return dayForm()
             case (6):
                 return yearForm()
+            case (10):
+                return pictureForm()
             default:
                 return <TextField label="Correct Answer" onChange = {handleChange} variant="outlined" fullWidth size="small" value={props.answer ||""}/>
         }

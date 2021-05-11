@@ -20,10 +20,14 @@ function PreWptasQuestion(props) {
         }
     }
 
+    // picture card questions will be merged together
+    const questionNo = props.number < 10 ? props.number : "10-12"
+    const questionText = props.number < 10 ? props.question : "Pictures"
+
     return (<div className="question-container">
         <div className="question-top-container">
             <div className="question-text-ans-container">
-                <h2 className="question">{props.number}. {processQuestion(props.question)}</h2>
+                <h2 className="question">{questionNo}. {processQuestion(questionText)}</h2>
             </div>
         </div>
         <div className="option-container">
