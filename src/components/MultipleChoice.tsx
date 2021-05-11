@@ -2,11 +2,11 @@ const randomAge = (answer:string) => {
     console.log(answer)
     const arr:string[] = [];
     const variance = 3
-    const min = parseInt(answer) - variance
-    const max = parseInt(answer) + variance
+    const min = Math.ceil(parseInt(answer) - variance)
+    const max = Math.floor(parseInt(answer) + variance)
 
     while(arr.length < 2){
-        let r = (Math.floor(Math.random() * max) + min).toString();
+        let r = (Math.floor(Math.random() * (max-min)) + min).toString();
         if(r !== answer && arr.indexOf(r) === -1) arr.push(r);
     }
 
