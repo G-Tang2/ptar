@@ -6,6 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { ReactSVG } from 'react-svg';
 import logo from "../img/logo-epworth.svg";
+import { Button } from "@material-ui/core";
 
 
 function Header(props) {
@@ -20,9 +21,9 @@ function Header(props) {
                 }}
                 src={logo}/>
             </Link>
-          <Avatar>
-            <AccountCircleIcon />
-          </Avatar>
+          <Link to={"/"} className='button-link'>
+            <Button variant="contained" color="secondary" size="small">LOG OUT</Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
