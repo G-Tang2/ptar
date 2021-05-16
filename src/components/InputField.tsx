@@ -15,9 +15,10 @@ function InputField(props) {
     const [url, setUrl] = useState<string[]>([]);
     const [count, setCount] = useState<number>(0);
     const [choice, setChoice] = useState<string[]>(["","",""]);
+    const [face, setFace] = useState<string>("");
 
     useEffect(() => {
-        if (props.number === 10) {
+        if (props.number === 8 || props. number === 10) {
             const subDirectory = props.number === 8 ? "faces" : "picture-cards"
             const fetchImages = async () => {
             let result = await storageRef.child("images").child(subDirectory).listAll();
@@ -41,6 +42,8 @@ function InputField(props) {
                 }
             }
             setCount(count)
+
+            setFace(props.answer);
         }
     }, [props]);
 
@@ -147,8 +150,6 @@ function InputField(props) {
 
     const pictureForm = () => {
         const highlightImage = (e: any) => {
-            console.log(count)
-            console.log(choice)
             var images = document.getElementById(e.target.id);
             if (images != null) {
                 if (images.className === "highlight") {
@@ -202,6 +203,46 @@ function InputField(props) {
             </Accordion>
         )}
             
+    const faceForm = () => {
+        const highlightImage = (e: any) => {
+            var images = document.getElementById(e.target.id);
+            if (images != null) {
+                if (images.className === "highlight") {
+                    images.className = "no-highlight"
+                    setFace("")
+                    props.setAnswer("")
+                }
+                else {
+                    if (face !== "") {
+                        console.log('Cannot select more than 1 face.')
+                        return;
+                    }
+                    setFace(e.target.id)
+                    images.className = "highlight";
+                    props.setAnswer(e.target.id)
+                }
+            }
+
+        }
+        return (
+            <Accordion>
+                    <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                    >Select one face</AccordionSummary>
+                    <AccordionDetails>
+                        <Grid container spacing={1} justify="center" className = "pics">
+                            {url.map(url => (
+                                <Grid item xs={4}>
+                                    <img className={props.answer.includes(url) ? 'highlight' : 'no-highlight'} id = {url} src={url} alt = {url} height = {200} width = {150} onClick={highlightImage}/>
+                                </Grid>
+                                )
+                            )}
+                        </Grid>
+                    </AccordionDetails>
+            </Accordion>
+        )}
 
     const questionInputField = question_no => {
         switch (question_no) {
@@ -217,6 +258,8 @@ function InputField(props) {
                 return dayForm()
             case (6):
                 return yearForm()
+            case (8):
+                return faceForm()
             case (10):
                 return pictureForm()
             default:
