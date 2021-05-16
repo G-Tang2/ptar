@@ -18,7 +18,7 @@ type WptasProps = {
 
 function SimpleDialog(props) {
     const handleClick = choice => {
-        if (choice) {
+        if (choice && choice) {
             props.handleClose(choice)
         }
     }
@@ -75,17 +75,13 @@ function Wptas_question(props:WptasProps) {
         setOpenPic(false);
     }
 
-    const handleClose = (value: string) => {
+    const handleClose = (value: string | Object) => {
         setOpen(false);
-        setSelectedValue(value);
-        props.setAnswer(prevState => ({...prevState, note: value}));
-        // TODO: for late to automatically select correct or incorrect button
-        // if (selectedValue === props.correctAnswer) {
-        //     props.setAnswer(prevState => ({...prevState, answered: true, correct:true}));
-        // }
-        // else {
-        //     props.setAnswer(prevState => ({...prevState, answered: true, correct:false}));
-        // }
+        console.log(typeof value === "string");
+        if (typeof value === "string") {
+            setSelectedValue(value);
+            props.setAnswer(prevState => ({...prevState, note: value}));
+        }
     };
 
     const handleAnswerBtnClick = (e) => {
