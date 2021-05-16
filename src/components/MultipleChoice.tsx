@@ -105,6 +105,21 @@ const randomYear = (answer:string) => {
     return arr;
 }
 
+const randomPlaces = (answer:string) => {
+    const placesArr = ["Ringwood Private Hospital", "Melbourne Eastern Private Hospital", "The Victoria Clinic", "Royal Melbourne Hospital", "Monash Medical Centre"]
+    let arr:string[] = [];
+    
+    while (arr.length < 2) {
+        let place = placesArr[randomNumber(0, placesArr.length - 1)]
+        if (place !== answer && arr.indexOf(place) === -1) {
+            arr.push(place)
+        }
+    }
+    insertIntoRandomIndex(answer,arr);
+    
+    return arr;
+}
+
 const MultipleChoice = (questionNo:number, answer:string) => {
     switch(questionNo) {
         // age question
@@ -125,9 +140,9 @@ const MultipleChoice = (questionNo:number, answer:string) => {
         // // year question
         case(6):
             return randomYear(answer)
-
         // // name of place question
-        // case(7):
+        case(7):
+            return randomPlaces(answer)
 
         // // face question
         // case(8):
