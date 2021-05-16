@@ -1,4 +1,5 @@
 import moment from "moment";
+import FacePicture from "./FacePicture";
 
 const insertIntoRandomIndex = (val:string, arr:string[]) => {
     // insert correct answer
@@ -135,6 +136,22 @@ const randomName = (answer:string) => {
     return arr;
 }
 
+const randomFace = (answer:string) => {
+    const allFaceUrl = FacePicture;
+
+    let arr:string[] = [];
+
+    while (arr.length < 2) {
+        let face = allFaceUrl[randomNumber(0, allFaceUrl.length - 1)]
+        if (face !== answer && arr.indexOf(face) === -1) {
+            arr.push(face)
+        }
+    }
+    insertIntoRandomIndex(answer,arr);
+    
+    return arr;
+}
+
 const MultipleChoice = (questionNo:number, answer:string) => {
     switch(questionNo) {
         // age question
@@ -161,6 +178,7 @@ const MultipleChoice = (questionNo:number, answer:string) => {
 
         // // face question
         // case(8):
+        //     return randomFace(answer)
 
         // // name question
         case(9):
