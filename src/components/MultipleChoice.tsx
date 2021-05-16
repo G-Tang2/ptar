@@ -1,32 +1,97 @@
+import moment from "moment";
+
 const insertIntoRandomIndex = (val:string, arr:string[]) => {
     // insert correct answer
     const randomIndex = Math.floor(Math.random() * (arr.length+1))
     arr.splice(randomIndex, 0, val)
 }
 
+const randomNumber = (min, max) => {
+    return Math.floor(Math.random() * (max-min+1)) + min;
+}
+
 const randomAge = (answer:string) => {
-    console.log(answer)
+    // generates an array of size three with random unique integers
     let arr:string[] = [];
-    const variance = 3
-    const min = Math.ceil(parseInt(answer) - variance)
-    const max = Math.floor(parseInt(answer) + variance)
+    const variance = 3;
+    const min = Math.ceil(parseInt(answer) - variance);
+    const max = Math.floor(parseInt(answer) + variance);
 
     while(arr.length < 2){
-        let r = (Math.floor(Math.random() * (max-min)) + min).toString();
-        if(r !== answer && arr.indexOf(r) === -1) arr.push(r);
+        let r = randomNumber(min, max).toString();
+        if(r !== answer && arr.indexOf(r) === -1) {
+            arr.push(r);
+        }
     }
 
     insertIntoRandomIndex(answer, arr);
     
-    return arr
+    return arr;
+}
+
+const randomDOB = (answer:string) => {
+    let arr:string[] = [];
+
+    const m = moment(answer, "DD/MM/YYYY");
+
+    // 0 - change day, 1 - change month, 2 - change year
+    while (arr.length < 2) {
+        let copyM = moment(m);
+        console.log(copyM.format("DD/MM/YYYY"))
+        const dateChange = randomNumber(0,2);
+        switch(dateChange) {
+            case(0):
+                copyM.set("date", randomNumber(1, 28));
+                break;
+            case(1):
+                copyM.set("month", randomNumber(1,12));
+                break;
+            case(2):
+                console.log(m.format("YYYY"))
+                copyM.set("year", randomNumber(parseInt(m.format("YYYY")) - 5, parseInt(m.format("YYYY")) + 5))
+                break;
+        }
+        if(!copyM.isSame(m) && arr.indexOf(copyM.format("DD/MM/YYYY")) === -1) {
+            arr.push(copyM.format("DD/MM/YYYY"))
+        }
+    }
+    insertIntoRandomIndex(answer, arr);
+
+    return arr;
 }
 
 const MultipleChoice = (questionNo:number, answer:string) => {
     switch(questionNo) {
         // age question
         case(1):
-            const choices = randomAge(answer)
-            return choices
+            return randomAge(answer)
+        // date of birth question
+        case(2):
+            return randomDOB(answer)
+        // month question
+        case(3):
+        
+        // time of day (morning, afternoon or night) question
+        case(4):
+
+        // day of the week question
+        case(5):
+
+        // year question
+        case(6):
+
+        // name of place question
+        case(7):
+
+        // face question
+        case(8):
+
+        // name question
+        case(9):
+
+        // picture question
+        case(10):
+
         default:
             return []
     }
