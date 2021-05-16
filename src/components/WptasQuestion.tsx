@@ -118,7 +118,7 @@ function Wptas_question(props:WptasProps) {
     }
 
     const answerUI = () => {
-        if (props.number > 9) {
+        if (props.number === 8 || props.number > 9) {
             return(
                 <React.Fragment>
                     <Button variant="contained" color="primary" onClick={handleClickOpenPic} style={{opacity:"100%"}}>
@@ -144,7 +144,6 @@ function Wptas_question(props:WptasProps) {
                 <p className="answer-text">Answer: {answerUI()}</p>
             </div>
             <div className="button-wrapper">
-                {/*TODO: Link multiple choice button to multiple choice pop up and keep track of answers*/}
                 <Button variant="contained" color="primary" onClick={handleClickOpen}>
                     Show Choices
                 </Button>

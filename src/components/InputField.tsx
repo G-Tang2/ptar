@@ -53,7 +53,7 @@ function InputField(props) {
 
     const handleDateChange = (date: Date | null) => {
         props.setAnswer(date);
-      };
+    };
 
       const ageForm = () => {
           const MINIMUM_AGE = 5
