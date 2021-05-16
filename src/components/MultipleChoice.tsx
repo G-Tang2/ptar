@@ -37,7 +37,6 @@ const randomDOB = (answer:string) => {
     // 0 - change day, 1 - change month, 2 - change year
     while (arr.length < 2) {
         let copyM = moment(m);
-        console.log(copyM.format("DD/MM/YYYY"))
         const dateChange = randomNumber(0,2);
         switch(dateChange) {
             case(0):
@@ -47,7 +46,6 @@ const randomDOB = (answer:string) => {
                 copyM.set("month", randomNumber(1,12));
                 break;
             case(2):
-                console.log(m.format("YYYY"))
                 copyM.set("year", randomNumber(parseInt(m.format("YYYY")) - 5, parseInt(m.format("YYYY")) + 5))
                 break;
         }
@@ -78,13 +76,28 @@ const days = () => {
     return ["Morning", "Afternoon", "Night"]
 }
 
-const randomDayOfWeek = (answer) => {
+const randomDayOfWeek = (answer:string) => {
     let arr:string[] = [];
 
     while (arr.length < 2) {
         let day = moment().day(randomNumber(1,7)).format("dddd");
         if (day !== answer && arr.indexOf(day) === -1) {
             arr.push(day);
+        }
+    }
+    insertIntoRandomIndex(answer,arr);
+
+    return arr;
+}
+
+const randomYear = (answer:string) => {
+    let arr:string[] = [];
+    const variance = 3
+
+    while (arr.length < 2) {
+        let year = randomNumber(parseInt(answer) - variance, parseInt(answer) + variance).toString();
+        if (year !== answer && arr.indexOf(year) === -1) {
+            arr.push(year);
         }
     }
     insertIntoRandomIndex(answer,arr);
@@ -109,9 +122,9 @@ const MultipleChoice = (questionNo:number, answer:string) => {
         // // day of the week question
         case(5):
             return randomDayOfWeek(answer)
-
         // // year question
-        // case(6):
+        case(6):
+            return randomYear(answer)
 
         // // name of place question
         // case(7):
