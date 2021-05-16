@@ -6,7 +6,7 @@ const insertIntoRandomIndex = (val:string, arr:string[]) => {
     arr.splice(randomIndex, 0, val)
 }
 
-const randomNumber = (min, max) => {
+const randomNumber:(min:number, max:number)=> number = (min, max) => {
     return Math.floor(Math.random() * (max-min+1)) + min;
 }
 
@@ -60,6 +60,20 @@ const randomDOB = (answer:string) => {
     return arr;
 }
 
+const randomMonth = (answer:string) => {
+    let arr:string[] = [];
+
+    while (arr.length < 2) {
+        let copyM = moment().month(randomNumber(0,11)).format("MMMM");
+        if (copyM !== answer && arr.indexOf(copyM)) {
+            arr.push(copyM);
+        }
+    }
+    insertIntoRandomIndex(answer, arr);
+
+    return arr;
+}
+
 const MultipleChoice = (questionNo:number, answer:string) => {
     switch(questionNo) {
         // age question
@@ -70,27 +84,26 @@ const MultipleChoice = (questionNo:number, answer:string) => {
             return randomDOB(answer)
         // month question
         case(3):
-        
+            return randomMonth(answer)
         // time of day (morning, afternoon or night) question
-        case(4):
+        // case(4):
+        // // day of the week question
+        // case(5):
 
-        // day of the week question
-        case(5):
+        // // year question
+        // case(6):
 
-        // year question
-        case(6):
+        // // name of place question
+        // case(7):
 
-        // name of place question
-        case(7):
+        // // face question
+        // case(8):
 
-        // face question
-        case(8):
+        // // name question
+        // case(9):
 
-        // name question
-        case(9):
-
-        // picture question
-        case(10):
+        // // picture question
+        // case(10):
 
         default:
             return []
