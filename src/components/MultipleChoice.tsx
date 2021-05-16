@@ -3,6 +3,7 @@ const insertIntoRandomIndex = (val:string, arr:string[]) => {
     const randomIndex = Math.floor(Math.random() * (arr.length+1))
     arr.splice(randomIndex, 0, val)
 }
+
 const randomAge = (answer:string) => {
     console.log(answer)
     let arr:string[] = [];

@@ -15,6 +15,7 @@
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "chart.js": "^3.2.1",
+    "concurrently": "^6.1.0",
     "cors": "^2.8.5",
     "date-fns": "^2.21.2",
     "dotenv": "^8.2.0",
@@ -39,7 +40,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently --kill-others-on-fail \"react-scripts start\" \"cd api && node index.tsx\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
