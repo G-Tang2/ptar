@@ -18,13 +18,12 @@ function InputField(props) {
 
     useEffect(() => {
         if (props.number === 10) {
-            console.log(props.answer)
-                const subDirectory = props.number === 8 ? "faces" : "picture-cards"
-                const fetchImages = async () => {
-                let result = await storageRef.child("images").child(subDirectory).listAll();
-                let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
-                return Promise.all(urlPromises);
-            }
+            const subDirectory = props.number === 8 ? "faces" : "picture-cards"
+            const fetchImages = async () => {
+            let result = await storageRef.child("images").child(subDirectory).listAll();
+            let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
+            return Promise.all(urlPromises);
+        }
             
             const loadImages = async () => {
                 const urls:string[] = await fetchImages();

@@ -1,6 +1,11 @@
+const insertIntoRandomIndex = (val:string, arr:string[]) => {
+    // insert correct answer
+    const randomIndex = Math.floor(Math.random() * (arr.length+1))
+    arr.splice(randomIndex, 0, val)
+}
 const randomAge = (answer:string) => {
     console.log(answer)
-    const arr:string[] = [];
+    let arr:string[] = [];
     const variance = 3
     const min = Math.ceil(parseInt(answer) - variance)
     const max = Math.floor(parseInt(answer) + variance)
@@ -10,15 +15,14 @@ const randomAge = (answer:string) => {
         if(r !== answer && arr.indexOf(r) === -1) arr.push(r);
     }
 
-    // insert correct answer
-    let randomIndex = Math.floor(Math.random() * 3)
-    arr.splice(randomIndex, 0, answer)
+    insertIntoRandomIndex(answer, arr);
     
     return arr
 }
 
 const MultipleChoice = (questionNo:number, answer:string) => {
     switch(questionNo) {
+        // age question
         case(1):
             const choices = randomAge(answer)
             return choices

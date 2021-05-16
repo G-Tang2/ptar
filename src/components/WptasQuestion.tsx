@@ -61,7 +61,7 @@ function Wptas_question(props:WptasProps) {
             const choices = MultipleChoice(props.number, props.correctAnswer)
             setChoices(choices)
         }
-    },[props.correctAnswer])
+    },[props.correctAnswer, props.number])
 
     const handleClickOpen = () => {
         setOpen(true);

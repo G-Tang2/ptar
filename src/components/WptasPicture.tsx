@@ -29,6 +29,7 @@ function WptasPicture() {
         console.log(e);
         var images = document.getElementById(e.target.id);
         
+        console.log(count)
         if (images != null) {
             if (images.className === "highlight") {
                 images.className = "no-highlight"
