@@ -120,6 +120,21 @@ const randomPlaces = (answer:string) => {
     return arr;
 }
 
+const randomName = (answer:string) => {
+    const nameArr = ["Oliver", "Noah", "William", "Leo", "Lucas", "Amelia", "Olivia", "Charlotte", "Isla", "Mia"]
+    let arr:string[] = [];
+
+    while (arr.length < 2) {
+        let place = nameArr[randomNumber(0, nameArr.length - 1)]
+        if (place !== answer && arr.indexOf(place) === -1) {
+            arr.push(place)
+        }
+    }
+    insertIntoRandomIndex(answer,arr);
+    
+    return arr;
+}
+
 const MultipleChoice = (questionNo:number, answer:string) => {
     switch(questionNo) {
         // age question
@@ -148,7 +163,8 @@ const MultipleChoice = (questionNo:number, answer:string) => {
         // case(8):
 
         // // name question
-        // case(9):
+        case(9):
+            return randomName(answer)
 
         // // picture question
         // case(10):
