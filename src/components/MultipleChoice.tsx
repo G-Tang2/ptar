@@ -64,12 +64,30 @@ const randomMonth = (answer:string) => {
     let arr:string[] = [];
 
     while (arr.length < 2) {
-        let copyM = moment().month(randomNumber(0,11)).format("MMMM");
-        if (copyM !== answer && arr.indexOf(copyM)) {
-            arr.push(copyM);
+        let month = moment().month(randomNumber(0,11)).format("MMMM");
+        if (month !== answer && arr.indexOf(month) === -1) {
+            arr.push(month);
         }
     }
     insertIntoRandomIndex(answer, arr);
+
+    return arr;
+}
+
+const days = () => {
+    return ["Morning", "Afternoon", "Night"]
+}
+
+const randomDayOfWeek = (answer) => {
+    let arr:string[] = [];
+
+    while (arr.length < 2) {
+        let day = moment().day(randomNumber(1,7)).format("dddd");
+        if (day !== answer && arr.indexOf(day) === -1) {
+            arr.push(day);
+        }
+    }
+    insertIntoRandomIndex(answer,arr);
 
     return arr;
 }
@@ -86,9 +104,11 @@ const MultipleChoice = (questionNo:number, answer:string) => {
         case(3):
             return randomMonth(answer)
         // time of day (morning, afternoon or night) question
-        // case(4):
+        case(4):
+            return days
         // // day of the week question
-        // case(5):
+        case(5):
+            return randomDayOfWeek(answer)
 
         // // year question
         // case(6):
