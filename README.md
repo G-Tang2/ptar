@@ -1,6 +1,7 @@
 # How to get the app running
 
 ## Pre-requirement:
+- Have the latest Node.js installed on your computer.
 - Download the `.env` file (sent through email) and place it in `/api` folder.
 
 ## Instructions:
