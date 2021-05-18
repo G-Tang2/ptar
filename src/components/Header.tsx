@@ -1,9 +1,6 @@
-import React from "react";
 import {Link} from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Avatar from '@material-ui/core/Avatar';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { ReactSVG } from 'react-svg';
 import logo from "../img/logo-epworth.svg";
 import { Button } from "@material-ui/core";

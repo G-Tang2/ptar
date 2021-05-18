@@ -1,9 +1,8 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import TextField from "@material-ui/core/TextField";
-import { Button, FormControl } from "@material-ui/core";
+import { FormControl } from "@material-ui/core";
 
 type AbsProps = {
     number:number, 

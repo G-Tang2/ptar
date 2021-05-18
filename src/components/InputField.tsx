@@ -1,13 +1,12 @@
 import 'date-fns';
 import TextField from "@material-ui/core/TextField";
-import { Accordion, AccordionDetails, AccordionSummary, Button, FormControl, Grid, InputLabel, MenuItem, Select } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, FormControl, Grid, InputLabel, MenuItem, Select } from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import moment from "moment";
 import { useEffect, useState } from 'react';
 import { storage } from "../firebase/index";
-import React from 'react';
 
 
 function InputField(props) {
@@ -18,7 +17,7 @@ function InputField(props) {
     const [face, setFace] = useState<string>("");
 
     useEffect(() => {
-        if (props.number === 8 || props. number === 10) {
+        if (props.number === 8 || props.number === 10) {
             const subDirectory = props.number === 8 ? "faces" : "picture-cards"
             const fetchImages = async () => {
             let result = await storageRef.child("images").child(subDirectory).listAll();
@@ -36,7 +35,6 @@ function InputField(props) {
 
             let count = 0;
             for (let i=0; i < props.answer.length;i++) {
-                console.log(props.answer[i])
                 if (props.answer[i] !== ""){
                     count++;
                 }
@@ -45,7 +43,7 @@ function InputField(props) {
 
             setFace(props.answer);
         }
-    }, [props]);
+    }, [props, storageRef]);
 
     const handleChange = (e) => {
         props.setAnswer(e.target.value as string)
@@ -156,7 +154,7 @@ function InputField(props) {
                     images.className = "no-highlight"
                     setCount(count - 1);;
                     for (let i = 0; i < 3; i++) {
-                        if (choice[i] == e.target.id) {
+                        if (choice[i] === e.target.id) {
                             choice[i] = '';
                             setChoice(choice)
                             props.setAnswer(choice)

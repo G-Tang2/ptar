@@ -1,5 +1,3 @@
-import React from "react";
-
 function ScoreBar(props:any) {
     return (
     <div className="total-score-container">

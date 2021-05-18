@@ -1,6 +1,3 @@
-import React, { Dispatch, SetStateAction } from "react";
-import TextField from "@material-ui/core/TextField";
-import { FormControl, InputLabel, Select } from "@material-ui/core";
 import QuestionInputField from "./InputField"
 
 

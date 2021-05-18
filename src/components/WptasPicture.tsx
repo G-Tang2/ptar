@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import firebase from "firebase/app"
 import { storage } from "../firebase/index";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Grid } from "@material-ui/core";
 
 
@@ -26,18 +24,15 @@ function WptasPicture() {
         }, []);
 
     const highlightImage = (e: any) => {
-        console.log(e);
-        var images = document.getElementById(e.target.id);
-        
-        console.log(count)
+        const images = document.getElementById(e.target.id);
+
         if (images != null) {
             if (images.className === "highlight") {
                 images.className = "no-highlight"
                 setCount(count - 1);
                 for (let i = 0; i < 3; i++) {
-                    if (choice[i] == e.target.id) {
+                    if (choice[i] === e.target.id) {
                         choice[i] = 'none';
-                        console.log(choice[i]);
                     }
                 }
             }
@@ -51,7 +46,6 @@ function WptasPicture() {
                 for (let i = 0; i < 3; i++) {
                     if (choice[i] === 'none') {
                         choice[i] = e.target.id;
-                        console.log(choice[i]);
                     }
                 }
             }

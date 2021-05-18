@@ -53,7 +53,6 @@ function SimpleDialog(props) {
 function Wptas_question(props:WptasProps) {
     const [open, setOpen] = React.useState<boolean>(false);
     const [openPic, setOpenPic] = React.useState<boolean>(false);
-    const [selectedValue, setSelectedValue] = React.useState<string>("");
     const [choices, setChoices] = useState<string[]>([])
 
     useEffect(() => {
@@ -77,9 +76,7 @@ function Wptas_question(props:WptasProps) {
 
     const handleClose = (value: string | Object) => {
         setOpen(false);
-        console.log(typeof value === "string");
         if (typeof value === "string") {
-            setSelectedValue(value);
             props.setAnswer(prevState => ({...prevState, note: value}));
         }
     };

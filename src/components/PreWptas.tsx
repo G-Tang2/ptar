@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import {Button} from "@material-ui/core";
-import Wptas from "./Wptas"
 import PreWptasQuestion from "./PreWptasQuestion";
-import {Link, Route} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 import { useEffect } from "react";

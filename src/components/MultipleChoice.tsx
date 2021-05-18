@@ -135,7 +135,7 @@ const randomName = (answer:string) => {
     
     return arr;
 }
-
+// Doesn't work
 const randomFace = (answer:string) => {
     const allFaceUrl = FacePicture;
 

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
+import {useState} from 'react';
+import {Route, BrowserRouter as Router} from 'react-router-dom';
 import Header from "./components/Header";
 import PreWptas from "./components/PreWptas";
 import Abs from "./components/Abs";

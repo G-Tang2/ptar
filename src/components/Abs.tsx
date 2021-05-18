@@ -39,7 +39,7 @@ function Abs(props) {
                     try{
                         // data[0].test_id holds the test id due to RETURNING query
                         const body = {test_id: data[0].test_id, abs_question_no: i+1, abs_option: results[i]}
-                        const response = fetch(`http://localhost:5000/abs/test/results/${props.patientId}`,{
+                        fetch(`http://localhost:5000/abs/test/results/${props.patientId}`,{
                             method: "POST",
                             headers: {"Content-Type": "application/json"},
                             body: JSON.stringify(body)
@@ -50,7 +50,7 @@ function Abs(props) {
                 }
             }
             )} catch (err) {
-            console.log(err.message)
+                console.log(err.message)
         }
     }
 

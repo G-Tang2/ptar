@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Button, TextField} from "@material-ui/core";
 import WptasQuestion from "./WptasQuestion";
 import ScoreBar from "./ScoreBar";
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import moment from "moment";
 
 
