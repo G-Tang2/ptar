@@ -53,7 +53,7 @@ function Qr(props) {
                         <li>Point your device at a QR code so that the entire QR code is clearly visible within the red square.</li>
                     </ol>
                     <div>
-                        <img src={qrImg} alt="qr-code-image" style={{width:"40vw"}}/>
+                        <img src={qrImg} alt="qr-code-image" style={{width:"40vw", maxWidth:"300px"}}/>
                     </div>
                 </div>
                 <Button variant="outlined" color="primary" onClick={handleClickOpen}>
