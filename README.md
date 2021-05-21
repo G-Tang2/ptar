@@ -1,3 +1,5 @@
+***NOTE: Database on AWS is currently offline***
+
 # How to get the app running
 
 ## Pre-requirement:
