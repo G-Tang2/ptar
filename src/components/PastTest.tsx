@@ -91,7 +91,7 @@ function PastTest(props) {
                                     {test.test_score}/{testType==="wptas"?MAX_WPTAS_SCORE:MAX_ABS_SCORE}
                                 </TableCell>
                                 <TableCell>
-                                    <Link to={`/view/wptas/${props.patientId}/${test.test_id}`}>
+                                    <Link to={`/view/${testType}/${props.patientId}/${test.test_id}`}>
                                         <Button>View</Button>
                                     </Link>
                                     

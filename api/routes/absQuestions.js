@@ -13,6 +13,17 @@ router.get('/questions/abs', (req, res) => {
   })
 });
 
+// get patient's abs past test full detail
+router.get('/view/abs/:testId', (req, res) => {
+  const testId = req.params.testId
+  const query = `SELECT abs_option FROM abs_ans WHERE test_id = ($1) ORDER BY abs_question_no;`
+  myPool.query(query, [testId],
+    (err, results) => {
+      if (err) throw err;
+    res.send(results.rows);
+  })
+});
+
 // get patient's abs test scores
 router.get('/abs/test/score/:id', (req, res) => {
   const id = req.params.id

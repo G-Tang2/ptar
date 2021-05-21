@@ -7,6 +7,7 @@ import Wptas from "./components/Wptas";
 import MainPage from "./components/MainPage";
 import Qr from "./components/Qr";
 import ViewPastWptasTest from './components/ViewPastWptasTest';
+import ViewPastAbsTest from './components/ViewPastAbsTest';
 import './stylesheets/main.scss';
 
 function App() {
@@ -31,9 +32,7 @@ function App() {
           <Abs patientId={patientId}/>
         </Route>
         <Route path={`/view/wptas/${patientId}/:testId`} render={(props) => <ViewPastWptasTest {...props} patientId={patientId}/>} />
-        {/* <Route path={`/test/abs/${patientId}`}>
-          <Abs patientId={patientId}/>
-        </Route> */}
+        <Route path={`/view/abs/${patientId}/:testId`} render={(props) => <ViewPastAbsTest {...props} patientId={patientId}/>} />
       </Router>
     </div>
   );
