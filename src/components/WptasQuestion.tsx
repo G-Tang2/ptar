@@ -18,7 +18,7 @@ type WptasProps = {
 
 function SimpleDialog(props) {
     const handleClick = choice => {
-        if (choice && choice) {
+        if (choice) {
             props.handleClose(choice)
         }
     }
@@ -77,7 +77,7 @@ function Wptas_question(props:WptasProps) {
     const handleClose = (value: string | Object) => {
         setOpen(false);
         if (typeof value === "string") {
-            props.setAnswer(prevState => ({...prevState, note: value}));
+            props.setAnswer(prevState => ({...prevState, mcGiven:true, note: value}));
         }
     };
 
