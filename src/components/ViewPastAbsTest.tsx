@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 function ViewPastAbsTest(props) {
     const { testId } = props.match.params
     const [questions, setQuestions] = useState<{abs_question_no:number, abs_question_desc:string}[]>([])
-    const [results, setResults] = useState<{abs_option:number}[]>([])
+    const [results, setResults] = useState<{test_score:number, abs_option:number}[]>([])
     const [completeFetch, setCompleteFetch] = useState(false)
 
     console.log(testId);
@@ -28,9 +28,7 @@ function ViewPastAbsTest(props) {
     }, []);
 
     const questionResults = (abs_question_no:number, abs_question_desc:string) => {
-        console.log(results)
-        const renderInfo = completeFetch ?
-        (
+        return (
             <TableRow key={abs_question_no} >
                 <TableCell component="th" scope="row">
                     {abs_question_no + ". " + abs_question_desc}
@@ -40,13 +38,9 @@ function ViewPastAbsTest(props) {
                 </TableCell>
             </TableRow>
         )
-        : 
-        null
-        
-        return renderInfo
     }
 
-    return (
+    const renderInfo = completeFetch ? (
         <div className="main-container">
             <h1>ABS Past Tests</h1>
             <div className="questions">
@@ -66,8 +60,13 @@ function ViewPastAbsTest(props) {
                     </Table>
                 </TableContainer>
             </div>
+            <h3 style={{paddingBottom:30}}>Total score: {results[0].test_score}</h3>
         </div>
     )
+    :
+    null
+
+    return renderInfo
 }
 
 export default ViewPastAbsTest;

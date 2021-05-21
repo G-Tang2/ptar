@@ -16,7 +16,7 @@ router.get('/questions/abs', (req, res) => {
 // get patient's abs past test full detail
 router.get('/view/abs/:testId', (req, res) => {
   const testId = req.params.testId
-  const query = `SELECT abs_option FROM abs_ans WHERE test_id = ($1) ORDER BY abs_question_no;`
+  const query = `SELECT test_score, abs_option FROM abs_ans JOIN test ON abs_ans.test_id = test.test_id WHERE abs_ans.test_id = ($1) ORDER BY abs_question_no;`
   myPool.query(query, [testId],
     (err, results) => {
       if (err) throw err;

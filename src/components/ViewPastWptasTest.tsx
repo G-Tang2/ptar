@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 function ViewPastWptasTest(props) {
     const { testId } = props.match.params
     const [questions, setQuestions] = useState<{wptas_question_no:number, wptas_question_desc:string}[]>([])
-    const [results, setResults] = useState<{wptas_mc_given:boolean, wptas_correct:boolean, wptas_ans_note:string}[]>([])
+    const [results, setResults] = useState<{test_score:number, wptas_mc_given:boolean, wptas_correct:boolean, wptas_ans_note:string}[]>([])
     const [completeFetch, setCompleteFetch] = useState(false)
 
     console.log(testId);
@@ -28,9 +28,7 @@ function ViewPastWptasTest(props) {
     }, []);
 
     const questionResults = (wptas_question_no:number, wptas_question_desc:string) => {
-        console.log(results)
-        const renderInfo = completeFetch ?
-        (
+        return(
             <TableRow key={wptas_question_no} >
                 <TableCell component="th" scope="row">
                     {wptas_question_no + ". " + wptas_question_desc}
@@ -46,13 +44,8 @@ function ViewPastWptasTest(props) {
                 </TableCell>
             </TableRow>
         )
-        : 
-        null
-        
-        return renderInfo
     }
-
-    return (
+    const renderInfo = completeFetch ? (
         <div className="main-container">
             <h1>WPTAS Past Tests</h1>
             <div className="questions">
@@ -74,8 +67,12 @@ function ViewPastWptasTest(props) {
                     </Table>
                 </TableContainer>
             </div>
+            <h3 style={{paddingBottom:30}}>Total score: {results[0].test_score}</h3>
         </div>
     )
+    :
+    null
+    return renderInfo
 }
 
 export default ViewPastWptasTest;
