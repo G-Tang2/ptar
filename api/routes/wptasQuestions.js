@@ -11,6 +11,18 @@ router.get('/questions/wptas', (req, res) => {
   })
 });
 
+// get patient's wptas past test full detail
+router.get('/view/wptas/:testId', (req, res) => {
+  const testId = req.params.testId
+  const query = `SELECT wptas_mc_given, wptas_correct, wptas_ans_note FROM wptas_ans WHERE test_id = ($1) ORDER BY wptas_question_no;`
+  myPool.query(query, [testId],
+    (err, results) => {
+      if (err) throw err;
+    res.send(results.rows);
+  })
+});
+
+
 // get patient's wptas test details
 // currently unused
 router.get('/wptas/test/:id', (req, res) => {

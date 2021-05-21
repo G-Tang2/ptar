@@ -6,6 +6,7 @@ import Abs from "./components/Abs";
 import Wptas from "./components/Wptas";
 import MainPage from "./components/MainPage";
 import Qr from "./components/Qr";
+import ViewPastWptasTest from './components/ViewPastWptasTest';
 import './stylesheets/main.scss';
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
         <Route path={`/test/abs/${patientId}`}>
           <Abs patientId={patientId}/>
         </Route>
+        <Route path={`/view/wptas/${patientId}/:testId`} render={(props) => <ViewPastWptasTest {...props} patientId={patientId}/>} />
+        {/* <Route path={`/test/abs/${patientId}`}>
+          <Abs patientId={patientId}/>
+        </Route> */}
       </Router>
     </div>
   );

@@ -11,6 +11,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 interface PastTestStruc {
     test_id:string,
@@ -90,7 +91,10 @@ function PastTest(props) {
                                     {test.test_score}/{testType==="wptas"?MAX_WPTAS_SCORE:MAX_ABS_SCORE}
                                 </TableCell>
                                 <TableCell>
-                                    <Button>View</Button>
+                                    <Link to={`/view/wptas/${props.patientId}/${test.test_id}`}>
+                                        <Button>View</Button>
+                                    </Link>
+                                    
                                 </TableCell>
                             </TableRow>
                             )}

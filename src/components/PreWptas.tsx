@@ -48,7 +48,10 @@ function PreWptas(props) {
         setAnswerPicture
     ]
 
-    const getQuestions = () => fetch("http://localhost:5000/questions/wptas").then(res => res.json()).then(res => setQuestions(res.splice(0,10)));
+    const getQuestions = () => 
+        fetch("http://localhost:5000/questions/wptas")
+        .then(res => res.json())
+        .then(res => setQuestions(res.splice(0,10)));
 
     const getAnswers = () => {
         let index;
