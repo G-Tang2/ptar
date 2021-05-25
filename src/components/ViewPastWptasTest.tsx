@@ -28,16 +28,18 @@ function ViewPastWptasTest(props) {
     }, []);
 
     const questionResults = (wptas_question_no:number, wptas_question_desc:string) => {
+        const wptas_correct = results[wptas_question_no - 1].wptas_correct
+        const mc_given = results[wptas_question_no - 1].wptas_mc_given;
         return(
             <TableRow key={wptas_question_no} >
                 <TableCell component="th" scope="row">
                     {wptas_question_no + ". " + wptas_question_desc}
                 </TableCell>
-                <TableCell align="center">
-                    {results[wptas_question_no - 1].wptas_correct ? "Y" : "N"}
+                <TableCell align="center" className={wptas_correct ? "good-result":"bad-result"}>
+                    {wptas_correct ? "Y" : "N"}
                 </TableCell>
-                <TableCell align="center">
-                    {results[wptas_question_no - 1].wptas_mc_given ? "Y" : "N"}
+                <TableCell align="center" className={!mc_given ? "good-result":"bad-result"}>
+                    {!mc_given ? "Y" : "N"}
                 </TableCell>
                 <TableCell >
                     {results[wptas_question_no - 1].wptas_ans_note}
@@ -55,7 +57,7 @@ function ViewPastWptasTest(props) {
                             <TableRow>
                                 <TableCell>Question</TableCell>
                                 <TableCell align="center">Correct</TableCell>
-                                <TableCell align="center">MC Given</TableCell>
+                                <TableCell align="center">MC Not Given</TableCell>
                                 <TableCell>Note</TableCell>
                             </TableRow>
                         </TableHead>
