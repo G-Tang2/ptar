@@ -65,10 +65,10 @@ function Qr(props) {
                     open={open} 
                     handleClose={handleClose} 
                 />
-                {/* {TODO: REMOVE THIS BEFORE DEPLOYMENT} */}
+
                 <div style={{borderStyle:"solid", padding:"20px", margin: "20px 0"}}>
                     <div>
-                        Development purposes:
+                        Enter patient ID:
                     </div>
                     <TextField label="Patient Id" onChange = {handleChange} variant="filled" fullWidth size="small" value={props.patientId}/>
                     <div>
