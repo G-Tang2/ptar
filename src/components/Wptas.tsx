@@ -156,12 +156,19 @@ function Wptas(props) {
             )}
         </div>
         <ScoreBar score={calcScore}/>
-        <TextField className="examiner-initials-text-field" label="Examiner initials" onChange = {handleChange} variant="outlined" fullWidth size="small" value={clinicianId}/>
+        <TextField 
+            className="examiner-initials-text-field" 
+            label="Examiner initials" 
+            onChange = {handleChange} 
+            variant="outlined" 
+            fullWidth 
+            size="small" 
+            value={clinicianId}
+            inputProps={{ maxLength: 3 }}
+            />
         <div className="button-wrapper" >
                 {isCompleted() ? 
-                    // <Link className="button-link" >
-                        <Button variant="contained" color="primary" className="submit-button" onClick={handleSubmit}>Submit</Button> 
-                    // </Link> : 
+                    <Button variant="contained" color="primary" className="submit-button" onClick={handleSubmit}>Submit</Button> 
                     :
                     <Button variant="contained" color="primary" className="submit-button" disabled>Submit</Button>}
         </div>
